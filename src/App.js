@@ -14,7 +14,6 @@ import History from "./components/history/history.components";
 import FAQ from "./components/faq/faq.component";
 import Donate from "./components/donate/donate.component";
 
-
 // import AuthVerify from "./common/auth-verify";
 import EventBus from "./common/EventBus";
 
@@ -30,8 +29,6 @@ class App extends Component {
     };
   }
 
- 
-
   componentDidMount() {
     const user = AuthService.getCurrentUser();
 
@@ -40,7 +37,7 @@ class App extends Component {
         currentUser: user,
       });
     }
-    
+
     EventBus.on("logout", () => {
       this.logOut();
     });
@@ -60,24 +57,24 @@ class App extends Component {
   }
 
   render() {
-    const { currentUser,} = this.state;
+    const { currentUser } = this.state;
 
     return (
       <div>
         <div className="area"></div>
         <nav className="main-menu">
-          <div className="navbar-nav mr-auto">
-    
-          </div>
+          <div className="navbar-nav mr-auto"></div>
           {currentUser ? (
             <div>
-                <li>
-                  <Link to={"/profile"} className="nav-text">
-                    <i className="fa fa-user fa-2x"></i>
-                    <span className="nav-text">{currentUser.nickname}       {currentUser.balance} $</span>
-                  </Link>
-                </li>
-                <li>
+              <li>
+                <Link to={"/profile"} className="nav-text">
+                  <i className="fa fa-user fa-2x"></i>
+                  <span className="nav-text">
+                    {currentUser.nickname} {currentUser.balance} $
+                  </span>
+                </Link>
+              </li>
+              <li>
                 <Link to={"/home"} className="nav-text">
                   <i className="fa fa-search fa-2x"></i>
                   <span className="nav-text">Search proxy</span>
@@ -121,8 +118,8 @@ class App extends Component {
 
               <li className="nav-item">
                 <Link to={"/register"} className="nav-text">
-                <i className="fa fa-arrow-up fa-2x"></i>
-                <span className="nav-text">Sign Up</span>
+                  <i className="fa fa-arrow-up fa-2x"></i>
+                  <span className="nav-text">Sign Up</span>
                 </Link>
               </li>
             </div>
@@ -131,17 +128,17 @@ class App extends Component {
 
         <div className="container mt-3">
           <Switch>
-          <Route exact path={["/", "/home"]} component={Home} />
+            <Route exact path={["/", "/home"]} component={Home} />
             <Route exact path="/login" component={Login} />
-            <Route exact path="/history" component={History}/>
-            <Route exact path="/FAQ" component={FAQ}/>
-            <Route exact path="/donate" component={Donate}/>
+            <Route exact path="/history" component={History} />
+            <Route exact path="/FAQ" component={FAQ} />
+            <Route exact path="/donate" component={Donate} />
             <Route exact path="/register" component={Register} />
             <Route exact path="/profile" component={Profile} />
           </Switch>
         </div>
 
-        { /*<AuthVerify logOut={this.logOut}/> */ }
+        {/*<AuthVerify logOut={this.logOut}/> */}
       </div>
     );
   }

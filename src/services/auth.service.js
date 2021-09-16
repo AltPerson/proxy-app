@@ -1,35 +1,37 @@
 import axios from "axios";
 
-const API_URL = "https://193.162.143.184/api/a/";
-
 class AuthService {
   login(email, password) {
     const data = {
       email,
-      password
-    }
+      password,
+    };
     console.log(data);
-    return fetch(API_URL + "auth",{
-          method: 'POST',
-          body: JSON.stringify(data),
-          headers: {
-              'Content-Type': 'application/json' 
-          }
+    return fetch(process.env.REACT_APP_API_URL + "auth", {
+      method: "POST",
+      body: JSON.stringify(data),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then(function (response) {
+        return response.json();
       })
-      .then(function(response) {
-        return response.json()
-      })
-      .then(elem => {
+      .then((elem) => {
         if (elem.access_token) {
-
           const access_token = elem.access_token;
           console.log(elem.access_token);
           localStorage.setItem("user", access_token);
         }
-        return axios.get(API_URL + "users/me", { headers: {"Authorization" : `Bearer ${localStorage.getItem("user")}`} })
-        .then(response => {
-          localStorage.setItem("user_info", JSON.stringify(response.data))
-        });
+        return axios
+          .get(process.env.REACT_APP_API_URL + "users/me", {
+            headers: {
+              Authorization: `Bearer ${localStorage.getItem("user")}`,
+            },
+          })
+          .then((response) => {
+            localStorage.setItem("user_info", JSON.stringify(response.data));
+          });
       });
   }
 
@@ -44,21 +46,21 @@ class AuthService {
       email,
       password,
       password2,
-    }
-    console.log(JSON.stringify(data))
-    return fetch(API_URL + "users/register",{
-            method: 'POST',
-            body: JSON.stringify(data),
-            headers: {
-                'Content-Type': 'application/json' 
-            }
-        })
-        .then(function(response) {
-          return response.json()
-        })
-        .then(elem => {
-            console.log(elem)
-        });
+    };
+    console.log(JSON.stringify(data));
+    return fetch(process.env.REACT_APP_API_URL + "users/register", {
+      method: "POST",
+      body: JSON.stringify(data),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then(function (response) {
+        return response.json();
+      })
+      .then((elem) => {
+        console.log(elem);
+      });
   }
 
   getCurrentUser() {
