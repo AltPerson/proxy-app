@@ -1,37 +1,68 @@
 import axios from "axios";
 
-const API_URL = "http://localhost:8080/api/auth/";
+const API_URL = "https://193.162.143.184/api/a/";
 
 class AuthService {
-  login(username, password) {
-    return axios
-      .post(API_URL + "signin", {
-        username,
-        password
+  login(email, password) {
+    const data = {
+      email,
+      password
+    }
+    console.log(data);
+    return fetch(API_URL + "auth",{
+          method: 'POST',
+          body: JSON.stringify(data),
+          headers: {
+              'Content-Type': 'application/json' 
+          }
       })
-      .then(response => {
-        if (response.data.accessToken) {
-          localStorage.setItem("user", JSON.stringify(response.data));
-        }
+      .then(function(response) {
+        return response.json()
+      })
+      .then(elem => {
+        if (elem.access_token) {
 
-        return response.data;
+          const access_token = elem.access_token;
+          console.log(elem.access_token);
+          localStorage.setItem("user", access_token);
+        }
+        return axios.get(API_URL + "users/me", { headers: {"Authorization" : `Bearer ${localStorage.getItem("user")}`} })
+        .then(response => {
+          localStorage.setItem("user_info", JSON.stringify(response.data))
+        });
       });
   }
 
   logout() {
     localStorage.removeItem("user");
+    localStorage.removeItem("user_info");
   }
 
-  register(username, email, password) {
-    return axios.post(API_URL + "signup", {
-      username,
+  register(nickname, email, password, password2) {
+    const data = {
+      nickname,
       email,
-      password
-    });
+      password,
+      password2,
+    }
+    console.log(JSON.stringify(data))
+    return fetch(API_URL + "users/register",{
+            method: 'POST',
+            body: JSON.stringify(data),
+            headers: {
+                'Content-Type': 'application/json' 
+            }
+        })
+        .then(function(response) {
+          return response.json()
+        })
+        .then(elem => {
+            console.log(elem)
+        });
   }
 
   getCurrentUser() {
-    return JSON.parse(localStorage.getItem('user'));;
+    return JSON.parse(localStorage.getItem("user_info"));
   }
 }
 

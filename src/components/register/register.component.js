@@ -4,7 +4,9 @@ import Input from "react-validation/build/input";
 import CheckButton from "react-validation/build/button";
 import { isEmail } from "validator";
 
-import AuthService from "../services/auth.service";
+import { Link } from "react-router-dom";
+
+import AuthService from "../../services/auth.service";
 
 const required = value => {
   if (!value) {
@@ -46,6 +48,16 @@ const vpassword = value => {
   }
 };
 
+const vConfPassword = value => {
+  if (value.length < 6 || value.length > 40) {
+    return (
+      <div className="alert alert-danger" role="alert">
+        The password must be between 6 and 40 characters.
+      </div>
+    );
+  }
+};
+
 export default class Register extends Component {
   constructor(props) {
     super(props);
@@ -53,11 +65,13 @@ export default class Register extends Component {
     this.onChangeUsername = this.onChangeUsername.bind(this);
     this.onChangeEmail = this.onChangeEmail.bind(this);
     this.onChangePassword = this.onChangePassword.bind(this);
+    this.onChangeConfirmPassword = this.onChangeConfirmPassword.bind(this);
 
     this.state = {
       username: "",
       email: "",
       password: "",
+      confirmPassword: "",
       successful: false,
       message: ""
     };
@@ -81,6 +95,12 @@ export default class Register extends Component {
     });
   }
 
+  onChangeConfirmPassword(e) {
+    this.setState({
+      confirmPassword: e.target.value
+    });
+  }
+
   handleRegister(e) {
     e.preventDefault();
 
@@ -92,14 +112,17 @@ export default class Register extends Component {
     this.form.validateAll();
 
     if (this.checkBtn.context._errors.length === 0) {
+      
       AuthService.register(
         this.state.username,
         this.state.email,
-        this.state.password
+        this.state.password,
+        this.state.confirmPassword
       ).then(
         response => {
+          console.log(response);
           this.setState({
-            message: response.data.message,
+            message: "Succesful",
             successful: true
           });
         },
@@ -175,8 +198,25 @@ export default class Register extends Component {
                 </div>
 
                 <div className="form-group">
+                  <label htmlFor="password">Confirm Password</label>
+                  <Input
+                    type="password"
+                    className="form-control"
+                    name="confirmPassword"
+                    value={this.state.confirmPassword}
+                    onChange={this.onChangeConfirmPassword}
+                    validations={[required, vConfPassword]}
+                  />
+                </div>
+
+                <div className="form-group">
                   <button className="btn btn-primary btn-block">Sign Up</button>
                 </div>
+                <Link to={"/login"} className="nav-text">
+                  <div className="form-group">
+                    <button className="btn btn-block">Login</button>
+                  </div>
+                </Link>
               </div>
             )}
 
@@ -191,7 +231,13 @@ export default class Register extends Component {
                   role="alert"
                 >
                   {this.state.message}
+                  
                 </div>
+                <Link to={"/login"} className="nav-text">
+                  <div className="form-group">
+                    <button className="btn btn-primary btn-block">Login</button>
+                  </div>
+                </Link>
               </div>
             )}
             <CheckButton

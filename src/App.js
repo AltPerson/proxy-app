@@ -2,16 +2,18 @@ import React, { Component } from "react";
 import { Switch, Route, Link } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
+import "./Header.css";
 
 import AuthService from "./services/auth.service";
 
-import Login from "./components/login.component";
-import Register from "./components/register.component";
-import Home from "./components/home.component";
-import Profile from "./components/profile.component";
-import BoardUser from "./components/board-user.component";
-import BoardModerator from "./components/board-moderator.component";
-import BoardAdmin from "./components/board-admin.component";
+import Login from "./components/login/login.component";
+import Register from "./components/register/register.component";
+import Home from "./components/home/home.component";
+import Profile from "./components/profile/profile.component";
+import History from "./components/history/history.components";
+import FAQ from "./components/faq/faq.component";
+import Donate from "./components/donate/donate.component";
+
 
 // import AuthVerify from "./common/auth-verify";
 import EventBus from "./common/EventBus";
@@ -28,14 +30,14 @@ class App extends Component {
     };
   }
 
+ 
+
   componentDidMount() {
     const user = AuthService.getCurrentUser();
 
     if (user) {
       this.setState({
         currentUser: user,
-        showModeratorBoard: user.roles.includes("ROLE_MODERATOR"),
-        showAdminBoard: user.roles.includes("ROLE_ADMIN"),
       });
     }
     
@@ -58,70 +60,69 @@ class App extends Component {
   }
 
   render() {
-    const { currentUser, showModeratorBoard, showAdminBoard } = this.state;
+    const { currentUser,} = this.state;
 
     return (
       <div>
-        <nav className="navbar navbar-expand navbar-dark bg-dark">
-          <Link to={"/"} className="navbar-brand">
-            bezKoder
-          </Link>
+        <div className="area"></div>
+        <nav className="main-menu">
           <div className="navbar-nav mr-auto">
-            <li className="nav-item">
-              <Link to={"/home"} className="nav-link">
-                Home
-              </Link>
-            </li>
-
-            {showModeratorBoard && (
-              <li className="nav-item">
-                <Link to={"/mod"} className="nav-link">
-                  Moderator Board
-                </Link>
-              </li>
-            )}
-
-            {showAdminBoard && (
-              <li className="nav-item">
-                <Link to={"/admin"} className="nav-link">
-                  Admin Board
-                </Link>
-              </li>
-            )}
-
-            {currentUser && (
-              <li className="nav-item">
-                <Link to={"/user"} className="nav-link">
-                  User
-                </Link>
-              </li>
-            )}
+    
           </div>
-
           {currentUser ? (
-            <div className="navbar-nav ml-auto">
-              <li className="nav-item">
-                <Link to={"/profile"} className="nav-link">
-                  {currentUser.username}
+            <div>
+                <li>
+                  <Link to={"/profile"} className="nav-text">
+                    <i className="fa fa-user fa-2x"></i>
+                    <span className="nav-text">{currentUser.nickname}       {currentUser.balance} $</span>
+                  </Link>
+                </li>
+                <li>
+                <Link to={"/home"} className="nav-text">
+                  <i className="fa fa-search fa-2x"></i>
+                  <span className="nav-text">Search proxy</span>
                 </Link>
               </li>
-              <li className="nav-item">
-                <a href="/login" className="nav-link" onClick={this.logOut}>
-                  LogOut
-                </a>
+              <li>
+                <Link to={"/history"} className="nav-text">
+                  <i className="fa fa-book fa-2x"></i>
+                  <span className="nav-text">History</span>
+                </Link>
               </li>
+              <li>
+                <Link to={"/donate"} className="nav-text">
+                  <i className="fa fa-money fa-2x"></i>
+                  <span className="nav-text">Donate</span>
+                </Link>
+              </li>
+              <li>
+                <Link to={"/FAQ"} className="nav-text">
+                  <i className="fa fa-question-circle fa-2x"></i>
+                  <span className="nav-text">FAQ</span>
+                </Link>
+              </li>
+              <ul className="logout">
+                <li>
+                  <a href="/login" className="nav-text" onClick={this.logOut}>
+                    <i className="fa fa-power-off fa-2x"></i>
+                    <span className="nav-text">LogOut</span>
+                  </a>
+                </li>
+              </ul>
             </div>
           ) : (
             <div className="navbar-nav ml-auto">
               <li className="nav-item">
-                <Link to={"/login"} className="nav-link">
-                  Login
+                <Link to={"/login"} className="nav-text">
+                  <i className="fa fa-sign-in fa-2x"></i>
+                  <span className="nav-text">Login</span>
                 </Link>
               </li>
 
               <li className="nav-item">
-                <Link to={"/register"} className="nav-link">
-                  Sign Up
+                <Link to={"/register"} className="nav-text">
+                <i className="fa fa-arrow-up fa-2x"></i>
+                <span className="nav-text">Sign Up</span>
                 </Link>
               </li>
             </div>
@@ -130,13 +131,13 @@ class App extends Component {
 
         <div className="container mt-3">
           <Switch>
-            <Route exact path={["/", "/home"]} component={Home} />
+          <Route exact path={["/", "/home"]} component={Home} />
             <Route exact path="/login" component={Login} />
+            <Route exact path="/history" component={History}/>
+            <Route exact path="/FAQ" component={FAQ}/>
+            <Route exact path="/donate" component={Donate}/>
             <Route exact path="/register" component={Register} />
             <Route exact path="/profile" component={Profile} />
-            <Route path="/user" component={BoardUser} />
-            <Route path="/mod" component={BoardModerator} />
-            <Route path="/admin" component={BoardAdmin} />
           </Switch>
         </div>
 

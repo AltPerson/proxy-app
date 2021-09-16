@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import { Redirect } from "react-router-dom";
-import AuthService from "../services/auth.service";
+import AuthService from "../../services/auth.service";
+
+import "../../Header.css"
 
 export default class Profile extends Component {
   constructor(props) {
@@ -9,8 +11,9 @@ export default class Profile extends Component {
     this.state = {
       redirect: null,
       userReady: false,
-      currentUser: { username: "" }
+      currentUser: {username: ""}
     };
+
   }
 
   componentDidMount() {
@@ -28,18 +31,20 @@ export default class Profile extends Component {
     const { currentUser } = this.state;
 
     return (
-      <div className="container">
+      <div className="area">
         {(this.state.userReady) ?
         <div>
         <header className="jumbotron">
           <h3>
-            <strong>{currentUser.username}</strong> Profile
+            <strong>{currentUser.nickname}</strong> Profile
           </h3>
         </header>
         <p>
           <strong>Token:</strong>{" "}
-          {currentUser.accessToken.substring(0, 20)} ...{" "}
-          {currentUser.accessToken.substr(currentUser.accessToken.length - 20)}
+          
+          {/* {console.log(currentUser)} */}
+          {localStorage.getItem("user").substring(0, 20)} ...{" "}
+          {localStorage.getItem("user").substr(localStorage.getItem("user").length - 20)}
         </p>
         <p>
           <strong>Id:</strong>{" "}
@@ -49,11 +54,11 @@ export default class Profile extends Component {
           <strong>Email:</strong>{" "}
           {currentUser.email}
         </p>
-        <strong>Authorities:</strong>
-        <ul>
-          {currentUser.roles &&
-            currentUser.roles.map((role, index) => <li key={index}>{role}</li>)}
-        </ul>
+
+        <p>
+          <strong>Balance:</strong>{" "}
+          {currentUser.balance}
+        </p>
       </div>: null}
       </div>
     );
