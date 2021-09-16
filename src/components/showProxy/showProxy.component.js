@@ -17,12 +17,20 @@ export default class ShowProxy extends Component {
         super(props);
         this.state = {
             modalClass: "modal-closed",
+<<<<<<< HEAD
+            proxysList: false,
+=======
             proxysList: null,
+>>>>>>> 5ef4e9048e32cc659e3ba2a52622c17ecb74b5fb
             sellProxy: null,
         }
         this.modalOnRent = this.modalOnRent.bind(this);
         this.modalOnBuy = this.modalOnBuy.bind(this);
         this.modalClosed = this.modalClosed.bind(this);
+<<<<<<< HEAD
+        this.props.getSpinner(!this.state.proxysList)
+=======
+>>>>>>> 5ef4e9048e32cc659e3ba2a52622c17ecb74b5fb
         /* this.buyBtn = this.buyBtn.bind(this); */
     }
 
@@ -54,6 +62,24 @@ export default class ShowProxy extends Component {
           this.setState({
             proxysList: proxyList
           })
+<<<<<<< HEAD
+        })
+        .then((res)=>{
+            if(res !== null){
+                this.props.getSpinner(!this.state.proxysList)
+            }
+        })
+    }
+
+    shouldComponentUpdate(nextProps){
+            if(nextProps.clickBTN !== this.props.clickBTN){
+                this.setState({
+                    proxysList: null
+                })
+                this.componentDidMount();
+            }
+            return true
+=======
         });
     }
 
@@ -69,6 +95,7 @@ export default class ShowProxy extends Component {
             })
             this.componentDidMount()
         }
+>>>>>>> 5ef4e9048e32cc659e3ba2a52622c17ecb74b5fb
     }
 
     modalOnRent(id) {
@@ -120,6 +147,10 @@ export default class ShowProxy extends Component {
 
 
     tableRender(){
+<<<<<<< HEAD
+        
+=======
+>>>>>>> 5ef4e9048e32cc659e3ba2a52622c17ecb74b5fb
         return this.state.proxysList.map((item) => {
             const {real_ip, domain, id, city, isp, speed, zip, region, typename, rent_price, price} = item;
 
@@ -162,18 +193,30 @@ export default class ShowProxy extends Component {
                     </td>
                 </tr> 
             )
+<<<<<<< HEAD
+        },
+=======
         }
+>>>>>>> 5ef4e9048e32cc659e3ba2a52622c17ecb74b5fb
     )}
 
     
     render(){
+<<<<<<< HEAD
+            
+=======
             /* this.searchProxy(); */
+>>>>>>> 5ef4e9048e32cc659e3ba2a52622c17ecb74b5fb
             if(!this.state.proxysList){
                 return(
                     <Spinner/>
                 )
             }
+<<<<<<< HEAD
+            
+=======
 
+>>>>>>> 5ef4e9048e32cc659e3ba2a52622c17ecb74b5fb
             const items = this.tableRender();
             return(
                 <div className="proxyWrapper">
@@ -199,6 +242,10 @@ export default class ShowProxy extends Component {
                     </Table>
                 </div>
             )
+<<<<<<< HEAD
+            
+=======
+>>>>>>> 5ef4e9048e32cc659e3ba2a52622c17ecb74b5fb
     }
 }
 
