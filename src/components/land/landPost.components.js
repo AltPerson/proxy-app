@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { ListGroup, ListGroupItem, Row } from "reactstrap";
 
 import proxyService from "../../services/proxy.service";
 import Spinner from "../spinner/spinner.component";
@@ -38,6 +37,7 @@ export default class LandPost extends Component {
       });
     } else {
       this.proxyService.getLand(this.props.getLand).then((items) => {
+        console.log(items);
         let itemList = [];
         let count = 0;
         const lad = items;
@@ -59,17 +59,16 @@ export default class LandPost extends Component {
     return this.state.itemList.map((item) => {
       const { id, countrys, post_code } = item;
       return (
-        <ListGroupItem key={id} className="itemLi">
-          <input
-            onClick={(e) => this.props.func(e.target.value)}
-            key={id}
-            className="input-country"
-            type="radio"
-            value={post_code}
-            name="gender"
-          />
-          {countrys}{" "}
-        </ListGroupItem>
+        <div
+          key={id}
+          className={`list__item ${
+            this.props.land === post_code && "selected"
+          }`}
+          postcode={post_code}
+          onClick={(e) => this.props.func(e.target.getAttribute("postcode"))}
+        >
+          {countrys}
+        </div>
       );
     });
   }
@@ -80,13 +79,6 @@ export default class LandPost extends Component {
     }
     const items = this.renderItem();
 
-    /* const items = this.renderItem() */
-    return (
-      <div className="ulWrapper">
-        <ListGroup className="ulItem" horizontal>
-          <Row>{items}</Row>
-        </ListGroup>
-      </div>
-    );
+    return <div className="list">{items}</div>;
   }
 }

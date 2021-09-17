@@ -1,10 +1,19 @@
-.typeIp{
-    width: 270px;
-    margin-top: 20px;
-    margin-right: 30px;
-    margin-bottom: 20px;
+.typeIp {
+  width: auto;
+  margin-top: 20px;
+  margin-right: 30px;
+  margin-bottom: 20px;
 }
 
-.tabContent{
-    margin-bottom: 30px;
+.nav-tabs {
+  border-bottom: none;
+  margin-bottom: 5px;
+}
+.tabContent {
+  margin-bottom: 30px;
+  border: none;
+}
+
+.tabPane {
+  border: 1px solid black;
 }
