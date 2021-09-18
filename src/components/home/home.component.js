@@ -155,7 +155,7 @@ export default class Proxy extends Component {
     );
   }
 
-  prstFunc(data = "") {
+  setLand(data = "all") {
     this.setState({ selectLand: data });
   }
 
@@ -173,7 +173,7 @@ export default class Proxy extends Component {
                   className="mr-2"
                   active={this.state.activeTab === item.id}
                   onClick={() => {
-                    this.prstFunc();
+                    this.setLand();
                     this.toggle(item.id, item.value);
                   }}
                 >
@@ -191,7 +191,7 @@ export default class Proxy extends Component {
             return (
               <TabPane key={item.id} tabId={item.id}>
                 <LandPost
-                  func={this.prstFunc.bind(this)}
+                  setLand={this.setLand.bind(this)}
                   land={this.state.selectLand}
                   getLand={item.value}
                 />

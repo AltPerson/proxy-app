@@ -10,54 +10,41 @@ export default class LandPost extends Component {
 
   constructor(props) {
     super(props);
-    this.renderItem = this.renderItem.bind(this);
+    this.renderItems = this.renderItems.bind(this);
   }
 
   state = {
-    selectLand: null,
     itemList: null,
   };
 
   componentDidMount() {
-    if (this.props.getLand === "USA") {
-      this.proxyService.getLand("USA").then((items) => {
-        let itemList = [];
-        let count = 0;
-        const lad = items;
-        for (let i in lad) {
-          itemList.push({
-            countrys: lad[i],
-            post_code: lad[i],
-            id: count++,
-          });
-        }
-        this.setState({
-          itemList: itemList,
+    this.proxyService.getLand(this.props.getLand).then((items) => {
+      if (Array.isArray(items)) {
+        const arrayItems = items.map((item, index) => {
+          return { country: item, post_code: item, id: index++ };
         });
-      });
-    } else {
-      this.proxyService.getLand(this.props.getLand).then((items) => {
-        console.log(items);
-        let itemList = [];
-        let count = 0;
-        const lad = items;
-        for (let i in lad) {
-          itemList.push({
-            countrys: i,
-            post_code: lad[i],
-            id: count++,
-          });
-        }
         this.setState({
-          itemList: itemList,
+          itemList: arrayItems,
         });
-      });
-    }
+      } else {
+        const objectItems = Object.entries(items).map(([key, value], index) => {
+          const regEx = /[^a-zA-Z]/g;
+          return {
+            country: key.replace(regEx, ""),
+            post_code: value,
+            id: index++,
+          };
+        });
+        this.setState({
+          itemList: objectItems,
+        });
+      }
+    });
   }
 
-  renderItem() {
+  renderItems() {
     return this.state.itemList.map((item) => {
-      const { id, countrys, post_code } = item;
+      const { id, country, post_code } = item;
       return (
         <div
           key={id}
@@ -65,9 +52,15 @@ export default class LandPost extends Component {
             this.props.land === post_code && "selected"
           }`}
           postcode={post_code}
-          onClick={(e) => this.props.func(e.target.getAttribute("postcode"))}
+          onClick={(e) => {
+            if (this.props.land === post_code) {
+              this.props.setLand();
+              return;
+            }
+            this.props.setLand(e.target.getAttribute("postcode"));
+          }}
         >
-          {countrys}
+          {country}
         </div>
       );
     });
@@ -77,8 +70,7 @@ export default class LandPost extends Component {
     if (!this.state.itemList) {
       return <Spinner />;
     }
-    const items = this.renderItem();
 
-    return <div className="list">{items}</div>;
+    return <div className="list">{this.renderItems()}</div>;
   }
 }
