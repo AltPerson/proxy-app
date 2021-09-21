@@ -4,55 +4,70 @@ import { Container, Button } from "reactstrap";
 import "./donate.css";
 
 import bitcoin from "./img/bitcoin.png"
-import ether from "./img/etherium.png"
+import ether from "./img/ethr.png"
+import dash from "./img/dash.png"
+import lite from "./img/lite.png"
+import doge from "./img/doge.png"
+import visa from "./img/visa.png"
+import qiwi from "./img/qiwi.png"
+import yandex from "./img/yandex.png"
 
 export default function Donate() {
     return(
         <Container>
             <div className="wrapper">
                 <div className="donat-header">Donate</div>
-                <hr/>
+                <hr style={{margin: "0"}}/>
                 <div className="donat-body">
-                    <div className="cryptocurrensy-wrapper donat-card">
-                        <div className="donat-card_header">Cryptocurrensy</div>
+
+                    <div className="qiwi-wrapper donat-card">
+                        <div className="donat-card_header">Qiwi/Yandex</div>
+                        <Button color="info" className="donate-btn_country">Russian
+                            <span role="img" aria-label="rus">🇷🇺</span>
+                        </Button>
+                        <Button color="info" className="donate-btn_country">Ukraine 
+                            <span role="img" aria-label="ukr">🇺🇦</span>
+                        </Button>
+                        <Button color="info" className="donate-btn_country">Dollar</Button>
+                        <Button color="info" className="donate-btn_country">Europe </Button>
+                        <Button color="info" className="donate-btn_country">Kazahstan  
+                            <span role="img" aria-label="kzx">🇰🇿</span>
+                        </Button>
                         <div className="label">amount</div>
-                        <input className="donat-input" placeholder="0.00$"></input>
+                        <input className="donat-input" placeholder="0.00"></input>
                         <Button color="success" className="donate-btn">Pay</Button>
-                        <img src={bitcoin} style={{ width: "120px", justifyContent: "space-between", display: "flex", margin: "0 auto" }} alt="bitcoin"></img>
-                        <img src={ether} style={{ width: "120px", display: "flex",justifyContent: "space-between", margin: "0 auto" }} alt="etherium"></img>
+                        <Button color="warning" className="donate-btn">Check</Button>
+                        <img src={qiwi} alt="qiwi" className="donate-img"></img>
+                        <img src={yandex} alt="yandex" className="donate-img"></img>
                     </div>
+
                     <div className="card-wrapper donat-card">
                         <div className="donat-card_header">Card</div>
                         <Button color="info" className="donate-btn_country">Russian 
-                            <span role="img">🇷🇺</span>
+                            <span role="img" aria-label="rus">🇷🇺</span>
                         </Button>
                         <Button color="info" className="donate-btn_country">Ukraine 
-                            <span role="img">🇺🇦</span>
+                            <span role="img" aria-label="ukr">🇺🇦</span>
                         </Button>
                         <div className="label">amount</div>
-                        <input className="donat-input" placeholder="0.00$"></input>
+                        <input className="donat-input" placeholder="0.00"></input>
                         <Button color="success" className="donate-btn">Pay</Button>
+                        <Button color="warning" className="donate-btn">Check</Button>
+                        <img src={visa} alt="visa" className="donate-img"></img>
                     </div>
-                    <div className="qiwi-wrapper donat-card">
-                        <div className="donat-card_header">Qiwi/Yandex</div>
-                        <Button color="info" className="donate-btn_country">Russian 
-                            <span role="img">🇷🇺</span>
-                        </Button>
-                        <Button color="info" className="donate-btn_country">Ukraine 
-                            <span role="img">🇺🇦</span>
-                        </Button>
-                        <Button color="info" className="donate-btn_country">Dollar 
-                            <span role="img">💵</span>
-                        </Button>
-                        <Button color="info" className="donate-btn_country">Europe 
-                            <span role="img">💶</span>
-                        </Button>
-                        <Button color="info" className="donate-btn_country">
-                            <span role="img">🇰🇿</span>Kazahstan  
-                        </Button>
+
+                    <div className="cryptocurrensy-wrapper donat-card">
+                        <div className="donat-card_header">Cryptocurrensy</div>
                         <div className="label">amount</div>
-                        <input className="donat-input" placeholder="0.00$"></input>
+                        <input className="donat-input" placeholder="0.00"></input>
                         <Button color="success" className="donate-btn">Pay</Button>
+                        <div className="img-wrapper">
+                            <img src={bitcoin} alt="bitcoin" className="donate-img"></img>
+                            <img src={ether} alt="etherium" className="donate-img"></img>
+                            <img src={dash}  alt="dash" className="donate-img"></img>
+                            <img src={doge} alt="doge" className="donate-img"></img>
+                            <img src={lite} alt="lite" className="donate-img"></img>
+                        </div>
                     </div>
                 </div>
             </div>

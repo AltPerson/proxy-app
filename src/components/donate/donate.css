@@ -1,11 +1,12 @@
 .wrapper{
     border: 2px solid grey;
     border-radius: 20px;
-    padding: 20px;
+    padding: 0 20px 20px 20px;
 }
 
 .donat-header{
-    font-size: 40px;
+    font-size: 30px;
+    font-weight: 700;
 }
 
 .donat-body{
@@ -30,7 +31,7 @@
 }
 
 .label{
-    margin-top: 20px;
+    margin-top: 15px;
     font-size: 20px;
     text-align: center;
 }
@@ -41,15 +42,35 @@
     width: 290px;
     font-size: 20px;
     border: 2px solid #111;
-    border-radius: 5px;
+    border-radius: 10px;
     height: 45px;
     margin: 0 auto 15px auto;
 }
 
 .donate-btn{
+    color: #fff;
+    border-radius: 10px;
     display: block;
     width: 290px;
     height: 45px;
     font-size: 20px;
     margin: 0 auto 15px auto;
+}
+
+.donate-btn_country{
+    border-radius: 10px;
+}
+
+.img-wrapper{
+    max-width: 300px;
+}
+
+.donate-img{
+    width: 95px; 
+    margin: 2px;
+}
+
+.donate-img_header{
+    width: 60px;
+    margin: 0 5px 5px 10px;
 }
