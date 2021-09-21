@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { Container, Button } from "reactstrap";
 
+import { buttonsQIWI } from "./data";
+
 import "./donate.css";
 
 import bitcoin from "./img/bitcoin.png"
@@ -18,20 +20,26 @@ export default function Donate() {
     const [ cardValue, setCardValue ] = useState(0 + ".00");
     const [ cryptoValue, setCryptoValue ] = useState(0 + ".00");
 
-    const handlerQIWi = (e) =>{
+    const handlerQIWi = (e) => {
         let newMsg = e.currentTarget.value
         setqiwiValue(newMsg)
     }
 
-    const handlerCard = (e) =>{
+    const handlerCard = (e) => {
         let newMsg = e.currentTarget.value
         setCardValue(newMsg)
     }
 
-    const handlerCrypto = (e) =>{
+    const handlerCrypto = (e) => {
         let newMsg = e.currentTarget.value
         setCryptoValue(newMsg)
     } 
+
+    const onClickHandler = (e) => {
+        let click = e.currentTarget.id
+        console.log(click);
+    }
+    
 
     return(
         <Container>
@@ -42,17 +50,15 @@ export default function Donate() {
 
                     <div className="qiwi-wrapper donat-card">
                         <div className="donat-card_header">Qiwi/Yandex</div>
-                        <Button color="info" className="donate-btn_country">Russian
-                            <span role="img" aria-label="rus">🇷🇺</span>
-                        </Button>
-                        <Button color="info" className="donate-btn_country">Ukraine 
-                            <span role="img" aria-label="ukr">🇺🇦</span>
-                        </Button>
-                        <Button color="info" className="donate-btn_country">Dollar</Button>
-                        <Button color="info" className="donate-btn_country">Europe </Button>
-                        <Button color="info" className="donate-btn_country">Kazahstan  
-                            <span role="img" aria-label="kzx">🇰🇿</span>
-                        </Button>
+                        {buttonsQIWI.map((item) => {
+                            if(item.emoji === null)
+                                return (<Button color="info" key={item.id} id={item.id} onClick={onClickHandler} className="donate-btn_country">{item.name}</Button>)
+                            return (
+                                <Button color="info" key={item.id} id={item.id} onClick={onClickHandler} className="donate-btn_country">{item.name}
+                                    <span role="img" aria-label={item.name}>{item.emoji}</span>
+                                </Button>
+                            )
+                        })}  
                         <div className="label">amount</div>
                         <input type="number" min="0" value={qiwiValue} onChange={handlerQIWi} className="donat-input"></input>
                         <Button color="success" className="donate-btn">Pay</Button>
@@ -65,6 +71,7 @@ export default function Donate() {
                         <div className="donat-card_header">Card</div>
                         <Button color="info" className="donate-btn_country">Russian 
                             <span role="img" aria-label="rus">🇷🇺</span>
+                            <span role="img" aria-label="ok" className="ok-emoji">✅</span>
                         </Button>
                         <Button color="info" className="donate-btn_country">Ukraine 
                             <span role="img" aria-label="ukr">🇺🇦</span>
