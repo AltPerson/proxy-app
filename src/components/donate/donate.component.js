@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Container, Button } from "reactstrap";
 
 import "./donate.css";
@@ -13,6 +13,26 @@ import qiwi from "./img/qiwi.png"
 import yandex from "./img/yandex.png"
 
 export default function Donate() {
+
+    const [ qiwiValue, setqiwiValue ] = useState(0 + ".00");
+    const [ cardValue, setCardValue ] = useState(0 + ".00");
+    const [ cryptoValue, setCryptoValue ] = useState(0 + ".00");
+
+    const handlerQIWi = (e) =>{
+        let newMsg = e.currentTarget.value
+        setqiwiValue(newMsg)
+    }
+
+    const handlerCard = (e) =>{
+        let newMsg = e.currentTarget.value
+        setCardValue(newMsg)
+    }
+
+    const handlerCrypto = (e) =>{
+        let newMsg = e.currentTarget.value
+        setCryptoValue(newMsg)
+    } 
+
     return(
         <Container>
             <div className="wrapper">
@@ -34,7 +54,7 @@ export default function Donate() {
                             <span role="img" aria-label="kzx">🇰🇿</span>
                         </Button>
                         <div className="label">amount</div>
-                        <input className="donat-input" placeholder="0.00"></input>
+                        <input type="number" min="0" value={qiwiValue} onChange={handlerQIWi} className="donat-input"></input>
                         <Button color="success" className="donate-btn">Pay</Button>
                         <Button color="warning" className="donate-btn">Check</Button>
                         <img src={qiwi} alt="qiwi" className="donate-img"></img>
@@ -50,7 +70,7 @@ export default function Donate() {
                             <span role="img" aria-label="ukr">🇺🇦</span>
                         </Button>
                         <div className="label">amount</div>
-                        <input className="donat-input" placeholder="0.00"></input>
+                        <input type="number" min="0" value={cardValue} onChange={handlerCard} className="donat-input"></input>
                         <Button color="success" className="donate-btn">Pay</Button>
                         <Button color="warning" className="donate-btn">Check</Button>
                         <img src={visa} alt="visa" className="donate-img"></img>
@@ -59,7 +79,7 @@ export default function Donate() {
                     <div className="cryptocurrensy-wrapper donat-card">
                         <div className="donat-card_header">Cryptocurrensy</div>
                         <div className="label">amount</div>
-                        <input className="donat-input" placeholder="0.00"></input>
+                        <input type="number" min="0" value={cryptoValue} onChange={handlerCrypto} className="donat-input"></input>
                         <Button color="success" className="donate-btn">Pay</Button>
                         <div className="img-wrapper">
                             <img src={bitcoin} alt="bitcoin" className="donate-img"></img>
