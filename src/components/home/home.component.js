@@ -169,8 +169,7 @@ export default class Proxy extends Component {
             return (
               <NavItem key={item.id}>
                 <Button
-                  color="primary"
-                  className="mr-2"
+                  className="mr-2 btns"
                   active={this.state.activeTab === item.id}
                   onClick={() => {
                     this.setLand();

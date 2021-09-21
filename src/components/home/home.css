@@ -17,3 +17,7 @@
 .tabPane {
   border: 1px solid black;
 }
+
+.btns {
+  border: none;
+}
