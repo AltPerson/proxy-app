@@ -50,17 +50,17 @@ export const dropDownValueLeft = [
   {
     id: "4",
     name: "Android(Mobile)",
-    value: "Android(Mobile)",
+    value: "5",
   },
   {
     id: "5",
     name: "Router",
-    value: "Router",
+    value: "6",
   },
   {
     id: "6",
     name: "Linux",
-    value: "Linux",
+    value: "8",
   },
 ];
 
@@ -73,16 +73,16 @@ export const dropDownValueRight = [
   {
     id: "2",
     name: "Clean",
-    value: "Clean",
+    value: "clean",
   },
   {
     id: "3",
     name: "Extra clean",
-    value: "Extra clean",
+    value: "extra_clean",
   },
   {
     id: "4",
     name: "Black 50% OFF",
-    value: "Black 50% OFF",
+    value: "black_50%_OFF",
   },
 ];
