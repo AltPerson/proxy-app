@@ -168,7 +168,7 @@ export default function Donate() {
           </div>
 
           <div className="cryptocurrensy-wrapper donat-card">
-            <div className="donat-card_header">Cryptocurrensy</div>
+            <div className="donat-card_header">Cryptocurrency</div>
             <div className="label">amount</div>
             <input
               type="number"
