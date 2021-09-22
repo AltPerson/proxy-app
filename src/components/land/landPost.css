@@ -48,3 +48,10 @@
 .selected {
   background: #595959;
 }
+
+.tick-image {
+  width: 20px;
+  height: 20px;
+  object-fit: cover;
+  margin: 0 0 6px 10px;
+}

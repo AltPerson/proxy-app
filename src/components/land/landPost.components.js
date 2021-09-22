@@ -5,6 +5,8 @@ import Spinner from "../spinner/spinner.component";
 
 import "./landPost.css";
 
+import Agree from "./agree.component";
+
 export default class LandPost extends Component {
   proxyService = new proxyService();
 
@@ -61,6 +63,7 @@ export default class LandPost extends Component {
           }}
         >
           {country}
+          {this.props.land === post_code && <Agree />}
         </div>
       );
     });
