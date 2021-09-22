@@ -1,80 +1,80 @@
-.wrapper{
-    border: 2px solid grey;
-    border-radius: 20px;
-    padding: 0 20px 20px 20px;
+.wrapper {
+  border: 2px solid grey;
+  border-radius: 20px;
+  padding: 0 20px 20px 20px;
 }
 
-.donat-header{
-    font-size: 30px;
-    font-weight: 700;
+.donat-header {
+  font-size: 30px;
+  font-weight: 700;
 }
 
-.donat-body{
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    align-items: flex-start;
+.donat-body {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  align-items: flex-start;
 }
 
-.donat-card_header{
-    text-align: center;
-    font-size: 40px;
-    font-weight: 900;
+.donat-card_header {
+  text-align: center;
+  font-size: 40px;
+  font-weight: 900;
 }
 
-.donate-btn_country{
-    display: block;
-    width: 290px;
-    height: 45px;
-    font-size: 20px;
-    margin: 0 auto 15px auto;
+.donate-btn_country {
+  display: block;
+  width: 290px;
+  height: 45px;
+  font-size: 20px;
+  margin: 0 auto 15px auto;
 }
 
-.label{
-    margin-top: 15px;
-    font-size: 20px;
-    text-align: center;
+.label {
+  margin-top: 15px;
+  font-size: 20px;
+  text-align: center;
 }
 
-.donat-input{
-    display: block;
-    text-align: center;
-    width: 290px;
-    font-size: 20px;
-    border: 2px solid #111;
-    border-radius: 10px;
-    height: 45px;
-    margin: 0 auto 15px auto;
+.donat-input {
+  display: block;
+  text-align: center;
+  width: 290px;
+  font-size: 20px;
+  border: 2px solid #111;
+  border-radius: 10px;
+  height: 45px;
+  margin: 0 auto 15px auto;
 }
 
-.donate-btn{
-    color: #fff;
-    border-radius: 10px;
-    display: block;
-    width: 290px;
-    height: 45px;
-    font-size: 20px;
-    margin: 0 auto 15px auto;
+.donate-btn {
+  color: #fff;
+  border-radius: 10px;
+  display: block;
+  width: 290px;
+  height: 45px;
+  font-size: 20px;
+  margin: 0 auto 15px auto;
 }
 
-.donate-btn_country{
-    border-radius: 10px;
+.donate-btn_country {
+  border-radius: 10px;
 }
 
-.img-wrapper{
-    max-width: 300px;
+.img-wrapper {
+  max-width: 300px;
 }
 
-.donate-img{
-    width: 95px; 
-    margin: 2px;
+.donate-img {
+  width: 95px;
+  margin: 2px;
 }
 
-.donate-img_header{
-    width: 60px;
-    margin: 0 5px 5px 10px;
+.donate-img_header {
+  width: 60px;
+  margin: 0 5px 5px 10px;
 }
 
-.ok-emoji{
-    float: right;
+.ok-emoji {
+  float: right;
 }

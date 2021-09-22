@@ -6,8 +6,6 @@ class AuthService {
       email,
       password,
     };
-    console.log(data);
-    console.log(process.env.REACT_APP_API_URL);
     return fetch(process.env.REACT_APP_API_URL + "auth", {
       method: "POST",
       body: JSON.stringify(data),
