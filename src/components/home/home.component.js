@@ -87,10 +87,11 @@ export default class Proxy extends Component {
 
   propsTest() {
     console.log(
+      "SELECT Land(Radio BTN): " +
       this.state.selectLand /* радіо-бтн */ +
-        " " +
+        "Type IP " +
         this.state.typeIpValue +
-        " " +
+        "MATERIC: " +
         this.state.proxyLand /* верхня кнопка {usa, africa, ...}*/ +
         " Blacklist: " +
         this.state.blacklistValue +
