@@ -34,6 +34,18 @@ class Proxy {
     return this.getResource(`base/regions?continent=${continent}`);
   }
 
+  getCrypto = (sum) => {
+    return this.getResource(`merchant/create_crypto_pay?amount_fiat=${sum}`)
+  }
+
+  getCard = (sum, land) => {
+    return this.getResource(`merchant/create_zver_pay?amount_fiat=${sum}&type=${land}`)
+  }
+
+  getQiwi = (sum, land) => {
+    return this.getResource(`merchant/create_freekassa_pay?amount_fiat=${sum}&type=${land}`)
+  }
+
   getContinent(
     continent,
     socks_type_id = "all",

@@ -3,6 +3,7 @@ import Form from "react-validation/build/form";
 import Input from "react-validation/build/input";
 import CheckButton from "react-validation/build/button";
 import { isEmail } from "validator";
+import { Redirect } from "react-router-dom";
 
 import { Link } from "react-router-dom";
 
@@ -66,6 +67,7 @@ export default class Register extends Component {
     this.onChangeEmail = this.onChangeEmail.bind(this);
     this.onChangePassword = this.onChangePassword.bind(this);
     this.onChangeConfirmPassword = this.onChangeConfirmPassword.bind(this);
+    this.onClickSignUp = this.onClickSignUp.bind(this);
 
     this.state = {
       username: "",
@@ -73,8 +75,13 @@ export default class Register extends Component {
       password: "",
       confirmPassword: "",
       successful: false,
-      message: ""
+      message: "",
+      redirect: null
     };
+  }
+
+  onClickSignUp(){
+    this.setState({redirect: "/login"});
   }
 
   onChangeUsername(e) {
@@ -144,7 +151,10 @@ export default class Register extends Component {
   }
 
   render() {
+    const {redirect} = this.state;
+    if (redirect) return <Redirect to={redirect}/>
     return (
+      
       <div className="col-md-12">
         <div className="card card-container">
           <img
@@ -210,7 +220,7 @@ export default class Register extends Component {
                 </div>
 
                 <div className="form-group">
-                  <button className="btn btn-primary btn-block">Sign Up</button>
+                  <button className="btn btn-primary btn-block" onClick={this.onClickSignUp}>Sign Up</button>
                 </div>
                 <Link to={"/login"} className="nav-text">
                   <div className="form-group">

@@ -5,6 +5,7 @@ export const buttonsQIWI = [
     emoji: " 🇷🇺",
     chek: false,
     type: "Qiwi",
+    value: "RU"
   },
   {
     id: "2",
@@ -12,6 +13,7 @@ export const buttonsQIWI = [
     emoji: " 🇺🇦",
     chek: false,
     type: "Qiwi",
+    value: "UAN"
   },
   {
     id: "3",
@@ -19,6 +21,7 @@ export const buttonsQIWI = [
     emoji: null,
     chek: false,
     type: "Qiwi",
+    value: "USD"
   },
   {
     id: "4",
@@ -26,6 +29,7 @@ export const buttonsQIWI = [
     emoji: null,
     chek: false,
     type: "Qiwi",
+    value: "EU"
   },
   {
     id: "5",
@@ -33,6 +37,7 @@ export const buttonsQIWI = [
     emoji: " 🇰🇿",
     chek: false,
     type: "Qiwi",
+    value: "KZ"
   },
 ];
 
@@ -43,6 +48,7 @@ export const buttonsCard = [
     emoji: " 🇷🇺",
     chek: false,
     type: "Card",
+    value: "RU"
   },
   {
     id: "2",
@@ -50,5 +56,6 @@ export const buttonsCard = [
     emoji: " 🇺🇦",
     chek: false,
     type: "Card",
+    value: "UAN"
   },
 ];
