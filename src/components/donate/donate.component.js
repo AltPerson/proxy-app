@@ -40,7 +40,7 @@ export default function Donate() {
   const getCardURL = () => {
     services.getCard(cardValue, isLabel.value)
       .then((url) => {
-        window.location.assign(url[0])
+        window.location.assign(url.url)
       })
   }
 
