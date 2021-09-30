@@ -45,9 +45,9 @@ export default function Donate() {
   }
 
   const getQiwiURL = () => {
-    services.getCard(cardValue, isLabel.value)
+    services.getQiwi(qiwiValue, isLabel.value)
       .then((url) => {
-        window.location.assign(url[0])
+        window.location.assign(url.url)
       })
   }
 
@@ -102,7 +102,7 @@ export default function Donate() {
                     color="info"
                     key={item.id}
                     id={item.id}
-                    value={index}
+                    value={item.value}
                     onClick={onClickHandlerQiwi}
                     className="donate-btn_country"
                   >

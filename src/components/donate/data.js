@@ -5,7 +5,7 @@ export const buttonsQIWI = [
     emoji: " 🇷🇺",
     chek: false,
     type: "Qiwi",
-    value: "RU"
+    value: "RUB"
   },
   {
     id: "2",
@@ -13,7 +13,7 @@ export const buttonsQIWI = [
     emoji: " 🇺🇦",
     chek: false,
     type: "Qiwi",
-    value: "UAN"
+    value: "UAH"
   },
   {
     id: "3",
@@ -29,7 +29,7 @@ export const buttonsQIWI = [
     emoji: null,
     chek: false,
     type: "Qiwi",
-    value: "EU"
+    value: "EUR"
   },
   {
     id: "5",
@@ -37,7 +37,7 @@ export const buttonsQIWI = [
     emoji: " 🇰🇿",
     chek: false,
     type: "Qiwi",
-    value: "KZ"
+    value: "KZT"
   },
 ];
 
