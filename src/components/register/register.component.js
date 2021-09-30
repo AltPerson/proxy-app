@@ -151,8 +151,8 @@ export default class Register extends Component {
   }
 
   render() {
-    const {redirect} = this.state;
-    if (redirect) return <Redirect to={redirect}/>
+    const {redirect, message} = this.state;
+    if (redirect && message === "Succesful") return <Redirect to={redirect}/>
     return (
       
       <div className="col-md-12">
