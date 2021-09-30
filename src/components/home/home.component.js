@@ -82,7 +82,12 @@ export default class Proxy extends Component {
           lands: buff,
         };
       });
-    });
+    })
+    .catch(error => {
+      if(error){
+        window.location.assign("/login")
+      }
+    })
   }
 
   propsTest() {
