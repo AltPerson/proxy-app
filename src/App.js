@@ -68,10 +68,9 @@ class App extends Component {
             <div>
               <li>
                 <Link to={"/profile"} className="nav-text">
-                  <i className="fa fa-user fa-2x"></i>
-                  <span className="nav-text">
-                    {currentUser.nickname} {currentUser.balance} $
-                  </span>
+                  <i className="fas fa fa-user fa-2x user_detal-img"></i>
+                    <span className="nav-text">{currentUser.nickname} </span>
+                    <span className="nav-text">{currentUser.balance} $</span>
                 </Link>
               </li>
               <li>

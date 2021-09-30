@@ -15,6 +15,10 @@ font-size:30px;
 color: white;
 }
 
+.fas{
+  width: 120px;
+}
+
 .user-name{
   margin-left: 5px;
 }
