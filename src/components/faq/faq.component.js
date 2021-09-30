@@ -4,7 +4,12 @@ import "./faq.css";
 
 export default class FAQ extends Component {
 
+    componentDidMount() {
+        document.title = 'FAQ';
+    }
+
     render() {
+
         return(
             <div>
                 <h3>О сервисе</h3>

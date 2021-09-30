@@ -32,6 +32,10 @@ export default class Login extends Component {
     };
   }
 
+  componentDidMount() {
+    document.title = 'Login';
+  }
+
   onChangeUsername(e) {
     this.setState({
       email: e.target.value

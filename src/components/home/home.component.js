@@ -26,6 +26,7 @@ import proxyService from "../../services/proxy.service";
 
 import "./home.css";
 
+
 export default class Proxy extends Component {
   constructor(props) {
     super(props);
@@ -65,6 +66,10 @@ export default class Proxy extends Component {
   }
 
   proxyService = new proxyService();
+
+  componentDidMount() {
+    document.title = 'Home';
+  }
 
   updateService() {
     const country = "america";

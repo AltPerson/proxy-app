@@ -80,6 +80,10 @@ export default class Register extends Component {
     };
   }
 
+  componentDidMount() {
+    document.title = 'Registration';
+  }
+
   onClickSignUp(){
     this.setState({redirect: "/login"});
   }

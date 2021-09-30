@@ -26,6 +26,10 @@ export default class History extends Component {
         refaundProxy: null,
     }
 
+    componentDidMount() {
+        document.title = 'History';
+    }
+
     //Modal to ressel
 
     modalOnResell(ip){

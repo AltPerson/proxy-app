@@ -18,7 +18,7 @@ import yandex from "./img/yandex.png";
 
 
 export default function Donate() {
-
+  document.title = 'Donate';
   const [qiwiValue, setqiwiValue] = useState(0 + ".00");
   const [cardValue, setCardValue] = useState(0 + ".00");
   const [cryptoValue, setCryptoValue] = useState(0 + ".00");
