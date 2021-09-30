@@ -19,6 +19,10 @@ color: white;
   width: 120px;
 }
 
+.user_info{
+  color: #999;
+}
+
 .user-name{
   margin-left: 5px;
 }

@@ -9,7 +9,6 @@ import AuthService from "./services/auth.service";
 import Login from "./components/login/login.component";
 import Register from "./components/register/register.component";
 import Home from "./components/home/home.component";
-import Profile from "./components/profile/profile.component";
 import History from "./components/history/history.components";
 import FAQ from "./components/faq/faq.component";
 import Donate from "./components/donate/donate.component";
@@ -67,11 +66,9 @@ class App extends Component {
           {currentUser ? (
             <div>
               <li>
-                <Link to={"/profile"} className="nav-text">
                   <i className="fas fa fa-user fa-2x user_detal-img"></i>
-                    <span className="nav-text">{currentUser.nickname} </span>
-                    <span className="nav-text">{currentUser.balance} $</span>
-                </Link>
+                    <span className="nav-text user_info">{currentUser.nickname} </span>
+                    <span className="nav-text user_info">{currentUser.balance} $</span>
               </li>
               <li>
                 <Link to={"/home"} className="nav-text">
@@ -133,7 +130,6 @@ class App extends Component {
             <Route exact path="/FAQ" component={FAQ} />
             <Route exact path="/donate" component={Donate} />
             <Route exact path="/register" component={Register} />
-            <Route exact path="/profile" component={Profile} />
           </Switch>
         </div>
 
