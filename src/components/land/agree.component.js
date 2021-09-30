@@ -1,8 +1,8 @@
 import React from "react";
-import tickSvg from "./agreetick.svg";
+import tickSvg from "./ghost.ico";
 
 function Agree() {
-  return <img className="tick-image" src={tickSvg} alt="tick-img" />;
+  return <img style={{marginTop: "3px"}} className="tick-image" src={tickSvg} alt="tick-img" />;
 }
 
 export default Agree;
