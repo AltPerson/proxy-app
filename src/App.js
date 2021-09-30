@@ -4,6 +4,8 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 import "./Header.css";
 
+import ghost from "./ghost.ico"
+
 import AuthService from "./services/auth.service";
 
 import Login from "./components/login/login.component";
@@ -65,6 +67,12 @@ class App extends Component {
           <div className="navbar-nav mr-auto"></div>
           {currentUser ? (
             <div>
+              <li>
+                <div className="logo">
+                <img className="ico" src={ghost} alt="ghost"></img>
+                <span className="nav-text site_name">Ghost Proxy </span>
+                </div>
+              </li>
               <li>
                   <i className="fas fa fa-user fa-2x user_detal-img"></i>
                     <span className="nav-text user_info">{currentUser.nickname} </span>

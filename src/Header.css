@@ -19,6 +19,23 @@ color: white;
   width: 120px;
 }
 
+.ico{
+  position: relative;
+  display: table-cell;
+  vertical-align: middle;
+}
+
+.logo{
+  display: flex;
+}
+
+.site_name{
+  color: #ffffff;
+  text-shadow: 0 0 5px #ffffff, 0 0 10px #ffffff, 0 0 20px #ffffff, 0 0 40px #0000ff, 0 0 80px #0000ff, 0 0 90px #0000ff, 0 0 100px #0000ff, 0 0 150px #0000ff;
+  margin: 10px;
+  font-weight: 600;
+}
+
 .user_info{
   color: #999;
 }
