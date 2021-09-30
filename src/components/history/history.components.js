@@ -6,6 +6,8 @@ import Spinner from "../spinner/spinner.component";
 
 import proxyService from "../../services/proxy.service";
 
+import logo from "../logo.png"
+
 import "./history.css";
 import "../modal/modal.css";
 
@@ -137,7 +139,7 @@ export default class History extends Component {
                     price: history[i].ammount,
                 })
             }
-            /* console.log(historyList); */
+            console.log(historyList);
             this.setState({
                 historyList: historyList
             })
@@ -147,15 +149,19 @@ export default class History extends Component {
     render() {
         if(!this.state.historyList){
             return(
-                <div>
-                    <Spinner/>
-                </div>
+                <>
+                    <img style={{ display: "block", margin: "0 auto" }} src={logo} alt="search"></img>
+                    <div>
+                        <Spinner/>
+                    </div>
+                </>
             )
         }
 
         const items = this.renderHistoryTable();
         return(
             <div className="historyWrapper">
+                <img style={{ display: "block", margin: "0 auto" }} src={logo} alt="search"></img>
                 <Table
                 className="historyItem"
                 striped>

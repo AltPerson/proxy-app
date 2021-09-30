@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 
 import "./faq.css";
 
+import logo from "../logo.png"
+
 export default class FAQ extends Component {
 
     componentDidMount() {
@@ -12,6 +14,7 @@ export default class FAQ extends Component {
 
         return(
             <div>
+                <img style={{ display: "block", margin: "0 auto" }} src={logo} alt="search"></img>
                 <h3>О сервисе</h3>
                 <div className="faqText">
                    После активации аккаунта становится доступен просмотр и покупка прокси. Купленные прокси появляются в сплывающем окне и в разделе history в виде ip:port. IP будет нашего сервера, он может отличаться от страны прокси. Это бэкконект прокси, они работают через наш сервер, поэтому при работе вы будете иметь исходящий айпи адрес, который вы покупали, а не нашего сервера. Нужно скопировать ip и port и без ошибок вставить их в ту программу, в которой прокси используется.

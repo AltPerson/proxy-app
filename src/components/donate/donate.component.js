@@ -15,6 +15,7 @@ import doge from "./img/doge.png";
 import visa from "./img/visa.png";
 import qiwi from "./img/qiwi.png";
 import yandex from "./img/yandex.png";
+import logo from "../logo.png"
 
 
 export default function Donate() {
@@ -89,6 +90,7 @@ export default function Donate() {
   console.log(isLabel);
   return (
     <Container>
+      <img style={{ display: "block", margin: "0 auto" }} src={logo} alt="search"></img>
       <div className="wrapper">
         <div className="donat-header">Donate</div>
         <hr style={{ margin: "0" }} />

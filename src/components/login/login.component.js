@@ -7,6 +7,8 @@ import { Link } from "react-router-dom";
 
 import AuthService from "../../services/auth.service";
 
+import logo from "../logo.png"
+
 const required = value => {
   if (!value) {
     return (
@@ -88,6 +90,7 @@ export default class Login extends Component {
   render() {
     return (
       <div className="col-md-12">
+        <img style={{ display: "block", margin: "0 auto" }} src={logo} alt="search"></img>
         <div className="card card-container">
           <img
             src="//ssl.gstatic.com/accounts/ui/avatar_2x.png"

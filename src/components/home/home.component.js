@@ -21,6 +21,7 @@ import LandPost from "../land/landPost.components";
 import ShowProxy from "../showProxy/showProxy.component";
 
 import searchimg from "../search-worldwide.png";
+import logo from "../logo.png"
 
 import proxyService from "../../services/proxy.service";
 
@@ -176,6 +177,7 @@ export default class Proxy extends Component {
 
     return (
       <div>
+        <img style={{ display: "block", margin: "0 auto" }} src={logo} alt="search"></img>
         <Nav tabs>
           {buttonsData.map((item) => {
             return (
