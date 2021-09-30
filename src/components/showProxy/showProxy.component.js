@@ -76,15 +76,10 @@ export default class ShowProxy extends Component {
 
   UNSAFE_componentWillReceiveProps(nextProps, prevProps) {
     let btn = true;
+    console.log(nextProps)
     console.log(btn);
     if (btn !== nextProps.clickBTN) {
-      console.log(nextProps.clickBTN);
       btn = !btn;
-      console.log(btn);
-      this.setState({
-        proxysList: null,
-      });
-      this.componentDidMount();
     }
   }
 
