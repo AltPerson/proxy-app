@@ -23,9 +23,9 @@ import CheckQiwi from "./modal_qiwi.component";
 
 export default function Donate() {
   document.title = 'Donate';
-  const [qiwiValue, setqiwiValue] = useState(0 + ".00");
-  const [cardValue, setCardValue] = useState(0 + ".00");
-  const [cryptoValue, setCryptoValue] = useState(0 + ".00");
+  const [qiwiValue, setqiwiValue] = useState(0);
+  const [cardValue, setCardValue] = useState(0);
+  const [cryptoValue, setCryptoValue] = useState(0);
   const [isLabel, setIsLabel] = useState({
     id: "",
     type: "",
@@ -37,15 +37,14 @@ export default function Donate() {
   const [services] = useState(new proxyService())
   
   const getCryptoURL = () => {
-    services.getCrypto(cryptoValue)
+    services.getCrypto(Math.round(cryptoValue))
       .then((url) => {
-
-        window.location.assign(url)
+        window.open(url)
       })
   };
 
   const getCardURL = () => {
-    services.getCard(cardValue, isLabel.value)
+    services.getCard(Math.round(cardValue), isLabel.value)
       .then((url) => {
         window.open(url.url)
         setCardVerify(url.order_id)
@@ -53,7 +52,7 @@ export default function Donate() {
   }
 
   const getQiwiURL = () => {
-    services.getQiwi(qiwiValue, isLabel.value)
+    services.getQiwi(Math.round(qiwiValue), isLabel.value)
       .then((url) => {
         window.open(url.url)
         setQiwiVerify(url.order_id)
