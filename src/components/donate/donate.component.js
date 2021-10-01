@@ -17,6 +17,9 @@ import qiwi from "./img/qiwi.png";
 import yandex from "./img/yandex.png";
 import logo from "../logo.png"
 
+import CheckModal from "./modal_card.component";
+import CheckQiwi from "./modal_qiwi.component";
+
 
 export default function Donate() {
   document.title = 'Donate';
@@ -28,12 +31,15 @@ export default function Donate() {
     type: "",
     value: "",
   });
+  const [cardVerify, setCardVerify] = useState(null);
+  const [qiwiVerify, setQiwiVerify] = useState(null);
 
   const [services] = useState(new proxyService())
   
   const getCryptoURL = () => {
     services.getCrypto(cryptoValue)
       .then((url) => {
+
         window.location.assign(url)
       })
   };
@@ -41,14 +47,16 @@ export default function Donate() {
   const getCardURL = () => {
     services.getCard(cardValue, isLabel.value)
       .then((url) => {
-        window.location.assign(url.url)
+        window.open(url.url)
+        setCardVerify(url.order_id)
       })
   }
 
   const getQiwiURL = () => {
     services.getQiwi(qiwiValue, isLabel.value)
       .then((url) => {
-        window.location.assign(url.url)
+        window.open(url.url)
+        setQiwiVerify(url.order_id)
       })
   }
 
@@ -148,9 +156,7 @@ export default function Donate() {
             <Button color="success" className="donate-btn" onClick={getQiwiURL}>
               Pay
             </Button>
-            <Button color="warning" className="donate-btn">
-              Check
-            </Button>
+            <CheckQiwi cardVerify={qiwiVerify}/>
             <img src={qiwi} alt="qiwi" className="donate-img"></img>
             <img src={yandex} alt="yandex" className="donate-img"></img>
           </div>
@@ -191,9 +197,7 @@ export default function Donate() {
             <Button color="success" className="donate-btn" onClick={getCardURL}>
               Pay
             </Button>
-            <Button color="warning" className="donate-btn">
-              Check
-            </Button>
+            <CheckModal cardVerify={cardVerify} typeWallet={"card"}/>
             <img src={visa} alt="visa" className="donate-img"></img>
           </div>
 

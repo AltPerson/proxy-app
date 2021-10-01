@@ -46,6 +46,14 @@ class Proxy {
     return this.getResource(`merchant/create_freekassa_pay?amount_fiat=${sum}&type=${land}`)
   }
 
+  getVerifiZver = (invoice) => {
+    return this.getResource(`merchant/check_zver_pay?invoise=${invoice}`)
+  }
+
+  getVerifiFree = (invoice) => {
+    return this.getResource(`merchant/check_freekassa_pay?invoise=${invoice}`)
+  }
+
   getContinent(
     continent,
     socks_type_id = "all",
