@@ -42,6 +42,11 @@ export default class History extends Component {
                 console.log(ref);
                 this.setState({refaundProxy: ip})
             })
+            .catch(error => {
+                if(error){
+                  window.location.assign("/login")
+                }
+            })
     }
 
     modalClosed() {

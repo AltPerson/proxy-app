@@ -41,6 +41,11 @@ export default function Donate() {
       .then((url) => {
         window.open(url)
       })
+      .catch(error => {
+        if(error){
+          window.location.assign("/login")
+        }
+      })
   };
 
   const getCardURL = () => {
@@ -49,6 +54,11 @@ export default function Donate() {
         window.open(url.url)
         setCardVerify(url.order_id)
       })
+      .catch(error => {
+        if(error){
+          window.location.assign("/login")
+        }
+      })
   }
 
   const getQiwiURL = () => {
@@ -56,6 +66,11 @@ export default function Donate() {
       .then((url) => {
         window.open(url.url)
         setQiwiVerify(url.order_id)
+      })
+      .catch(error => {
+        if(error){
+          window.location.assign("/login")
+        }
       })
   }
 

@@ -30,6 +30,11 @@ const CheckModal = (props) => {
             setModal(!modal)
             console.log(response.status)
         })
+        .catch(error => {
+          if(error){
+            window.location.assign("/login")
+          }
+        })
     }
     else{
         setModalText("Transactions not found")
