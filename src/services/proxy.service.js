@@ -2,7 +2,9 @@ class Proxy {
   constructor() {
     this._apiBase = process.env.REACT_APP_API_URL;
   }
-
+  sayHello = () => {
+    console.log("Hi");
+  };
   getResource = async (url) => {
     const res = await fetch(`${this._apiBase}${url}`, {
       method: "GET",

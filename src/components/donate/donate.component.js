@@ -14,6 +14,7 @@ import doge from "./img/doge.png";
 import visa from "./img/visa.png";
 import qiwi from "./img/qiwi.png";
 import yandex from "./img/yandex.png";
+import Proxy from "../../services/proxy.service";
 
 export default function Donate() {
   const [qiwiValue, setqiwiValue] = useState(0 + ".00");
@@ -24,7 +25,8 @@ export default function Donate() {
     type: "",
     value: "",
   });
-
+  const proxyService = new Proxy();
+  proxyService.sayHello();
   const handlerQIWi = (e) => {
     let newMsg = e.currentTarget.value;
     setqiwiValue(newMsg);
