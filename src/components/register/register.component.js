@@ -70,6 +70,7 @@ export default class Register extends Component {
     this.onChangePassword = this.onChangePassword.bind(this);
     this.onChangeConfirmPassword = this.onChangeConfirmPassword.bind(this);
     this.onClickSignUp = this.onClickSignUp.bind(this);
+    this.vPass_equal  = this.vPass_equal.bind(this);
 
     this.state = {
       username: "",
@@ -87,7 +88,19 @@ export default class Register extends Component {
   }
 
   onClickSignUp(){
-    this.setState({redirect: "/login"});
+      this.setState({redirect: "/login"});
+  }
+
+  vPass_equal(){
+    let {password, confirmPassword} = this.state;
+
+    if(password !== confirmPassword){
+      return (
+        <div className="alert alert-danger" role="alert">
+          The passwords do not match
+        </div>
+      );
+    }
   }
 
   onChangeUsername(e) {
@@ -222,7 +235,7 @@ export default class Register extends Component {
                     name="confirmPassword"
                     value={this.state.confirmPassword}
                     onChange={this.onChangeConfirmPassword}
-                    validations={[required, vConfPassword]}
+                    validations={[required, vConfPassword, this.vPass_equal]}
                   />
                 </div>
 
