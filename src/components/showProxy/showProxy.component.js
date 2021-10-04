@@ -159,7 +159,7 @@ export default class ShowProxy extends Component {
             <div className="buyBtn">
               <Button
                 onClick={() => {
-                  this.modalOnRent(id);
+                  this.modalOnBuy(id);
                 }}
                 className="priceBtnRent"
                 style={{ width: "80px" }}
@@ -170,7 +170,7 @@ export default class ShowProxy extends Component {
               </Button>{" "}
               <Button
                 onClick={() => {
-                  this.modalOnBuy(id);
+                  this.modalOnRent(id);
                 }}
                 className="priceBtnBuy"
                 style={{ width: "80px" }}
