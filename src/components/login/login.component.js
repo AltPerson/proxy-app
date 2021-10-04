@@ -73,11 +73,18 @@ export default class Login extends Component {
               error.response.data.message) ||
             error.message ||
             error.toString();
-
-          this.setState({
-            loading: false,
-            message: resMessage
-          });
+          
+          if(error.response.status === 403){
+            this.setState({
+              loading: false,
+              message: "Your password or login is incorrect"
+            });
+          } else{
+            this.setState({
+              loading: false,
+              message: resMessage
+            });
+          }
         }
       );
     } else {
