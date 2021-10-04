@@ -151,14 +151,14 @@ export default class Proxy extends Component {
         disabledBtn: true,
       });
     }
-    const { blacklist, typeIp, selectLand, proxyLand, City, Zip, clickBTN } =
+    const { blacklistValue, typeIpValue, selectLand, proxyLand, City, Zip, clickBTN } =
       this.state;
     return (
       <ShowProxy
         getSpinner={this.getSpinner}
         clickBTN={clickBTN}
-        blacklist={blacklist}
-        typeIp={typeIp}
+        blacklist={blacklistValue}
+        typeIp={typeIpValue}
         selectLand={selectLand}
         proxyLand={proxyLand}
         City={City}
