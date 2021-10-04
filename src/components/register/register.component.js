@@ -69,7 +69,6 @@ export default class Register extends Component {
     this.onChangeEmail = this.onChangeEmail.bind(this);
     this.onChangePassword = this.onChangePassword.bind(this);
     this.onChangeConfirmPassword = this.onChangeConfirmPassword.bind(this);
-    this.onClickSignUp = this.onClickSignUp.bind(this);
     this.vPass_equal  = this.vPass_equal.bind(this);
 
     this.state = {
@@ -85,10 +84,6 @@ export default class Register extends Component {
 
   componentDidMount() {
     document.title = 'Registration';
-  }
-
-  onClickSignUp(){
-      this.setState({redirect: "/login"});
   }
 
   vPass_equal(){
@@ -240,7 +235,7 @@ export default class Register extends Component {
                 </div>
 
                 <div className="form-group">
-                  <button className="btn btn-primary btn-block" onClick={this.onClickSignUp}>Sign Up</button>
+                  <button className="btn btn-primary btn-block">Sign Up</button>
                 </div>
                 <Link to={"/login"} className="nav-text">
                   <div className="form-group">
