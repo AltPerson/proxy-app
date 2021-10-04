@@ -76,21 +76,16 @@ export default class ShowProxy extends Component {
 
   UNSAFE_componentWillReceiveProps(nextProps, prevProps) {
     let btn = true;
+    console.log(nextProps)
     console.log(btn);
     if (btn !== nextProps.clickBTN) {
-      console.log(nextProps.clickBTN);
       btn = !btn;
-      console.log(btn);
-      this.setState({
-        proxysList: null,
-      });
-      this.componentDidMount();
     }
   }
 
-  modalOnRent(id) {
+  modalOnRent(ip) {
     this.setState({ modalClass: "modal-open" });
-    this.proxyService.buyProxy(id).then((sell) => {
+    this.proxyService.resellProxy(ip).then((sell) => {
       if (sell.MESSAGE === "insufficient funds") {
         this.setState({ sellProxy: sell.MESSAGE });
       } else {

@@ -45,7 +45,7 @@ export const dropDownValueLeft = [
   {
     id: "3",
     name: "Datacenter/hosting",
-    value: "Datacenter/hosting",
+    value: "Datacenter%2Fhosting",
   },
   {
     id: "4",
@@ -83,6 +83,6 @@ export const dropDownValueRight = [
   {
     id: "4",
     name: "Black 50% OFF",
-    value: "black_50%_OFF",
+    value: "black_50%_off",
   },
 ];

@@ -21,10 +21,12 @@ import LandPost from "../land/landPost.components";
 import ShowProxy from "../showProxy/showProxy.component";
 
 import searchimg from "../search-worldwide.png";
+import logo from "../logo.png"
 
 import proxyService from "../../services/proxy.service";
 
 import "./home.css";
+
 
 export default class Proxy extends Component {
   constructor(props) {
@@ -66,6 +68,10 @@ export default class Proxy extends Component {
 
   proxyService = new proxyService();
 
+  componentDidMount() {
+    document.title = 'Home';
+  }
+
   updateService() {
     const country = "america";
     this.proxyService.getLand(country).then((land) => {
@@ -82,7 +88,12 @@ export default class Proxy extends Component {
           lands: buff,
         };
       });
-    });
+    })
+    .catch(error => {
+      if(error){
+        window.location.assign("/login")
+      }
+    })
   }
 
   propsTest() {
@@ -140,14 +151,14 @@ export default class Proxy extends Component {
         disabledBtn: true,
       });
     }
-    const { blacklist, typeIp, selectLand, proxyLand, City, Zip, clickBTN } =
+    const { blacklistValue, typeIpValue, selectLand, proxyLand, City, Zip, clickBTN } =
       this.state;
     return (
       <ShowProxy
         getSpinner={this.getSpinner}
         clickBTN={clickBTN}
-        blacklist={blacklist}
-        typeIp={typeIp}
+        blacklist={blacklistValue}
+        typeIp={typeIpValue}
         selectLand={selectLand}
         proxyLand={proxyLand}
         City={City}
@@ -163,8 +174,10 @@ export default class Proxy extends Component {
   render() {
     const proxList = this.searchBtn();
 
+
     return (
       <div>
+        <img style={{ display: "block", margin: "0 auto" }} src={logo} alt="search"></img>
         <Nav tabs>
           {buttonsData.map((item) => {
             return (

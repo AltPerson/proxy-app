@@ -7,6 +7,8 @@ import { Link } from "react-router-dom";
 
 import AuthService from "../../services/auth.service";
 
+import logo from "../logo.png"
+
 const required = value => {
   if (!value) {
     return (
@@ -30,6 +32,10 @@ export default class Login extends Component {
       loading: false,
       message: ""
     };
+  }
+
+  componentDidMount() {
+    document.title = 'Login';
   }
 
   onChangeUsername(e) {
@@ -57,7 +63,7 @@ export default class Login extends Component {
     if (this.checkBtn.context._errors.length === 0) {
       AuthService.login(this.state.email, this.state.password).then(
         () => {
-          this.props.history.push("/profile");
+          this.props.history.push("/home");
           window.location.reload();
         },
         error => {
@@ -67,11 +73,18 @@ export default class Login extends Component {
               error.response.data.message) ||
             error.message ||
             error.toString();
-
-          this.setState({
-            loading: false,
-            message: resMessage
-          });
+          
+          if(error.response.status === 403){
+            this.setState({
+              loading: false,
+              message: "Your password or login is incorrect"
+            });
+          } else{
+            this.setState({
+              loading: false,
+              message: resMessage
+            });
+          }
         }
       );
     } else {
@@ -84,6 +97,7 @@ export default class Login extends Component {
   render() {
     return (
       <div className="col-md-12">
+        <img style={{ display: "block", margin: "0 auto" }} src={logo} alt="search"></img>
         <div className="card card-container">
           <img
             src="//ssl.gstatic.com/accounts/ui/avatar_2x.png"
@@ -98,7 +112,7 @@ export default class Login extends Component {
             }}
           >
             <div className="form-group">
-              <label htmlFor="username">Username</label>
+              <label htmlFor="username">Email</label>
               <Input
                 type="text"
                 className="form-control"

@@ -3,10 +3,13 @@ import Form from "react-validation/build/form";
 import Input from "react-validation/build/input";
 import CheckButton from "react-validation/build/button";
 import { isEmail } from "validator";
+import { Redirect } from "react-router-dom";
 
 import { Link } from "react-router-dom";
 
 import AuthService from "../../services/auth.service";
+
+import logo from "../logo.png"
 
 const required = value => {
   if (!value) {
@@ -66,6 +69,7 @@ export default class Register extends Component {
     this.onChangeEmail = this.onChangeEmail.bind(this);
     this.onChangePassword = this.onChangePassword.bind(this);
     this.onChangeConfirmPassword = this.onChangeConfirmPassword.bind(this);
+    this.vPass_equal  = this.vPass_equal.bind(this);
 
     this.state = {
       username: "",
@@ -73,8 +77,25 @@ export default class Register extends Component {
       password: "",
       confirmPassword: "",
       successful: false,
-      message: ""
+      message: "",
+      redirect: null
     };
+  }
+
+  componentDidMount() {
+    document.title = 'Registration';
+  }
+
+  vPass_equal(){
+    let {password, confirmPassword} = this.state;
+
+    if(password !== confirmPassword){
+      return (
+        <div className="alert alert-danger" role="alert">
+          The passwords do not match
+        </div>
+      );
+    }
   }
 
   onChangeUsername(e) {
@@ -144,8 +165,12 @@ export default class Register extends Component {
   }
 
   render() {
+    const {redirect, message} = this.state;
+    if (redirect && message === "Succesful") return <Redirect to={redirect}/>
     return (
+      
       <div className="col-md-12">
+        <img style={{ display: "block", margin: "0 auto" }} src={logo} alt="search"></img>
         <div className="card card-container">
           <img
             src="//ssl.gstatic.com/accounts/ui/avatar_2x.png"
@@ -205,7 +230,7 @@ export default class Register extends Component {
                     name="confirmPassword"
                     value={this.state.confirmPassword}
                     onChange={this.onChangeConfirmPassword}
-                    validations={[required, vConfPassword]}
+                    validations={[required, vConfPassword, this.vPass_equal]}
                   />
                 </div>
 
