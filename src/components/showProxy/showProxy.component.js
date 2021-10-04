@@ -83,9 +83,9 @@ export default class ShowProxy extends Component {
     }
   }
 
-  modalOnRent(id) {
+  modalOnRent(ip) {
     this.setState({ modalClass: "modal-open" });
-    this.proxyService.buyProxy(id).then((sell) => {
+    this.proxyService.resellProxy(ip).then((sell) => {
       if (sell.MESSAGE === "insufficient funds") {
         this.setState({ sellProxy: sell.MESSAGE });
       } else {
@@ -159,7 +159,7 @@ export default class ShowProxy extends Component {
             <div className="buyBtn">
               <Button
                 onClick={() => {
-                  this.modalOnBuy(id);
+                  this.modalOnRent(id);
                 }}
                 className="priceBtnRent"
                 style={{ width: "80px" }}
@@ -170,7 +170,7 @@ export default class ShowProxy extends Component {
               </Button>{" "}
               <Button
                 onClick={() => {
-                  this.modalOnRent(id);
+                  this.modalOnBuy(id);
                 }}
                 className="priceBtnBuy"
                 style={{ width: "80px" }}
