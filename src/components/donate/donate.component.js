@@ -3,7 +3,6 @@ import { Container, Button } from "reactstrap";
 
 import { buttonsQIWI, buttonsCard } from "./data";
 import Label from "./label.component";
-import proxyService from "../../services/proxy.service";
 
 import "./donate.css";
 
@@ -15,41 +14,29 @@ import doge from "./img/doge.png";
 import visa from "./img/visa.png";
 import qiwi from "./img/qiwi.png";
 import yandex from "./img/yandex.png";
-<<<<<<< HEAD
-import Proxy from "../../services/proxy.service";
-=======
-import logo from "../logo.png"
-
-import CheckModal from "./modal_card.component";
-import CheckQiwi from "./modal_qiwi.component";
-
->>>>>>> 2e51fd8fb0fe400a119a23bceb0a77c74dcb21a5
 
 export default function Donate() {
-  document.title = 'Donate';
-  const [qiwiValue, setqiwiValue] = useState(0);
-  const [cardValue, setCardValue] = useState(0);
-  const [cryptoValue, setCryptoValue] = useState(0);
+  const [qiwiValue, setqiwiValue] = useState("");
+  const [cardValue, setCardValue] = useState("");
+  const [cryptoValue, setCryptoValue] = useState("");
   const [isLabel, setIsLabel] = useState({
     id: "",
     type: "",
     value: "",
   });
-  const proxyService = new Proxy();
-  proxyService.sayHello();
   const handlerQIWi = (e) => {
     let newMsg = e.currentTarget.value;
-    setqiwiValue(newMsg);
+    setqiwiValue(newMsg.replace(/[^0-9]/g, ""));
   };
 
   const handlerCard = (e) => {
     let newMsg = e.currentTarget.value;
-    setCardValue(newMsg);
+    setCardValue(newMsg.replace(/[^0-9]/g, ""));
   };
 
   const handlerCrypto = (e) => {
     let newMsg = e.currentTarget.value;
-    setCryptoValue(newMsg);
+    setCryptoValue(newMsg.replace(/[^0-9]/g, ""));
   };
 
   const onClickHandlerQiwi = (e) => {
@@ -61,7 +48,6 @@ export default function Donate() {
       value,
     });
   };
-
   const onClickHandlerCard = (e) => {
     let click = e.currentTarget.id;
     const value = e.currentTarget.value;
@@ -71,11 +57,9 @@ export default function Donate() {
       value,
     });
   };
-
   console.log(isLabel);
   return (
     <Container>
-      <img style={{ display: "block", margin: "0 auto" }} src={logo} alt="search"></img>
       <div className="wrapper">
         <div className="donat-header">Donate</div>
         <hr style={{ margin: "0" }} />
@@ -89,7 +73,7 @@ export default function Donate() {
                     color="info"
                     key={item.id}
                     id={item.id}
-                    value={item.value}
+                    value={index}
                     onClick={onClickHandlerQiwi}
                     className="donate-btn_country"
                   >
@@ -108,7 +92,7 @@ export default function Donate() {
                   id={item.id}
                   onClick={onClickHandlerQiwi}
                   className="donate-btn_country"
-                  value={item.value}
+                  value={index}
                 >
                   {item.name}
                   <span role="img" aria-label={item.name}>
@@ -126,14 +110,17 @@ export default function Donate() {
             <input
               type="number"
               min="0"
+              placeholder="0"
               value={qiwiValue}
               onChange={handlerQIWi}
               className="donat-input"
             ></input>
-            <Button color="success" className="donate-btn" onClick={getQiwiURL}>
+            <Button color="success" className="donate-btn">
               Pay
             </Button>
-            <CheckQiwi cardVerify={qiwiVerify}/>
+            <Button color="warning" className="donate-btn">
+              Check
+            </Button>
             <img src={qiwi} alt="qiwi" className="donate-img"></img>
             <img src={yandex} alt="yandex" className="donate-img"></img>
           </div>
@@ -146,7 +133,8 @@ export default function Donate() {
                   color="info"
                   key={item.id}
                   id={item.id}
-                  value={item.value}
+                  placeholder="0"
+                  value={index}
                   className="donate-btn_country"
                   onClick={onClickHandlerCard}
                 >
@@ -168,13 +156,16 @@ export default function Donate() {
               type="number"
               min="0"
               value={cardValue}
+              placeholder="0"
               onChange={handlerCard}
               className="donat-input"
             ></input>
-            <Button color="success" className="donate-btn" onClick={getCardURL}>
+            <Button color="success" className="donate-btn">
               Pay
             </Button>
-            <CheckModal cardVerify={cardVerify} typeWallet={"card"}/>
+            <Button color="warning" className="donate-btn">
+              Check
+            </Button>
             <img src={visa} alt="visa" className="donate-img"></img>
           </div>
 
@@ -184,11 +175,12 @@ export default function Donate() {
             <input
               type="number"
               min="0"
+              placeholder="0"
               value={cryptoValue}
               onChange={handlerCrypto}
               className="donat-input"
             ></input>
-            <Button color="success" className="donate-btn" onClick={getCryptoURL}>
+            <Button color="success" className="donate-btn">
               Pay
             </Button>
             <div className="img-wrapper">

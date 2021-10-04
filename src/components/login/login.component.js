@@ -7,9 +7,9 @@ import { Link } from "react-router-dom";
 
 import AuthService from "../../services/auth.service";
 
-import logo from "../logo.png"
+import logo from "../logo.png";
 
-const required = value => {
+const required = (value) => {
   if (!value) {
     return (
       <div className="alert alert-danger" role="alert">
@@ -30,23 +30,23 @@ export default class Login extends Component {
       email: "",
       password: "",
       loading: false,
-      message: ""
+      message: "",
     };
   }
 
   componentDidMount() {
-    document.title = 'Login';
+    document.title = "Login";
   }
 
   onChangeUsername(e) {
     this.setState({
-      email: e.target.value
+      email: e.target.value,
     });
   }
 
   onChangePassword(e) {
     this.setState({
-      password: e.target.value
+      password: e.target.value,
     });
   }
 
@@ -55,7 +55,7 @@ export default class Login extends Component {
 
     this.setState({
       message: "",
-      loading: true
+      loading: true,
     });
 
     this.form.validateAll();
@@ -66,30 +66,30 @@ export default class Login extends Component {
           this.props.history.push("/home");
           window.location.reload();
         },
-        error => {
+        (error) => {
+          console.log(error);
           const resMessage =
             (error.response &&
               error.response.data &&
               error.response.data.message) ||
             error.message ||
             error.toString();
-          
-          if(error.response.status === 403){
+          if (error.response?.status === 403) {
             this.setState({
               loading: false,
-              message: "Your password or login is incorrect"
+              message: "Your password or login is incorrect",
             });
-          } else{
+          } else {
             this.setState({
               loading: false,
-              message: resMessage
+              message: resMessage,
             });
           }
         }
       );
     } else {
       this.setState({
-        loading: false
+        loading: false,
       });
     }
   }
@@ -97,7 +97,11 @@ export default class Login extends Component {
   render() {
     return (
       <div className="col-md-12">
-        <img style={{ display: "block", margin: "0 auto" }} src={logo} alt="search"></img>
+        <img
+          style={{ display: "block", margin: "0 auto" }}
+          src={logo}
+          alt="search"
+        ></img>
         <div className="card card-container">
           <img
             src="//ssl.gstatic.com/accounts/ui/avatar_2x.png"
@@ -107,7 +111,7 @@ export default class Login extends Component {
 
           <Form
             onSubmit={this.handleLogin}
-            ref={c => {
+            ref={(c) => {
               this.form = c;
             }}
           >
@@ -161,7 +165,7 @@ export default class Login extends Component {
             )}
             <CheckButton
               style={{ display: "none" }}
-              ref={c => {
+              ref={(c) => {
                 this.checkBtn = c;
               }}
             />
