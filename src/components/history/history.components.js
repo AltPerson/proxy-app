@@ -134,20 +134,26 @@ export default class History extends Component {
             console.log(history);
             let historyList = []
             for(let i in history){
+                const date = history[i].date.substr(0, 19).split("T")
                 historyList.push({
                     city: history[i].city,
-                    date: history[i].date,
+                    date: date[0] + " " + date[1],
                     typename: history[i].typename,
                     proxy: history[i].proxy,
                     region: history[i].region,
                     id: history[i].id,
-                    price: history[i].ammount,
+                    price: history[i].ammount.toFixed(2),
                 })
             }
             console.log(historyList);
             this.setState({
                 historyList: historyList
             })
+        })
+        .catch(error => {
+            if(error){
+              window.location.assign("/login")
+            }
         })
     }
 
