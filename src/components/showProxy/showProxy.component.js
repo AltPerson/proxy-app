@@ -76,7 +76,7 @@ export default class ShowProxy extends Component {
 
   UNSAFE_componentWillReceiveProps(nextProps, prevProps) {
     let btn = true;
-    console.log(nextProps)
+    console.log(nextProps);
     console.log(btn);
     if (btn !== nextProps.clickBTN) {
       btn = !btn;
@@ -207,7 +207,7 @@ export default class ShowProxy extends Component {
     const items = this.tableRender();
     return (
       <div className="proxyWrapper">
-        <Table className="proxyItem" striped>
+        <Table className="proxyItem" striped responsive>
           <thead>
             <tr>
               <th>IP</th>

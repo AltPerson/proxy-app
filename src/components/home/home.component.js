@@ -21,12 +21,12 @@ import LandPost from "../land/landPost.components";
 import ShowProxy from "../showProxy/showProxy.component";
 
 import searchimg from "../search-worldwide.png";
-import logo from "../logo.png"
+import logo from "../logo.png";
+import ghost from "../../ghost.ico";
 
 import proxyService from "../../services/proxy.service";
 
 import "./home.css";
-
 
 export default class Proxy extends Component {
   constructor(props) {
@@ -69,37 +69,39 @@ export default class Proxy extends Component {
   proxyService = new proxyService();
 
   componentDidMount() {
-    document.title = 'Home';
+    document.title = "Home";
   }
 
   updateService() {
     const country = "america";
-    this.proxyService.getLand(country).then((land) => {
-      const lad = land;
-      let buff = [];
-      for (let i in lad) {
-        buff.push({
-          [i]: lad[i],
-          id: this.maxId++,
+    this.proxyService
+      .getLand(country)
+      .then((land) => {
+        const lad = land;
+        let buff = [];
+        for (let i in lad) {
+          buff.push({
+            [i]: lad[i],
+            id: this.maxId++,
+          });
+        }
+        this.setState(({ lands }) => {
+          return {
+            lands: buff,
+          };
         });
-      }
-      this.setState(({ lands }) => {
-        return {
-          lands: buff,
-        };
+      })
+      .catch((error) => {
+        if (error) {
+          window.location.assign("/login");
+        }
       });
-    })
-    .catch(error => {
-      if(error){
-        window.location.assign("/login")
-      }
-    })
   }
 
   propsTest() {
     console.log(
       "SELECT Land(Radio BTN): " +
-      this.state.selectLand /* радіо-бтн */ +
+        this.state.selectLand /* радіо-бтн */ +
         "Type IP " +
         this.state.typeIpValue +
         "MATERIC: " +
@@ -151,8 +153,15 @@ export default class Proxy extends Component {
         disabledBtn: true,
       });
     }
-    const { blacklistValue, typeIpValue, selectLand, proxyLand, City, Zip, clickBTN } =
-      this.state;
+    const {
+      blacklistValue,
+      typeIpValue,
+      selectLand,
+      proxyLand,
+      City,
+      Zip,
+      clickBTN,
+    } = this.state;
     return (
       <ShowProxy
         getSpinner={this.getSpinner}
@@ -174,10 +183,10 @@ export default class Proxy extends Component {
   render() {
     const proxList = this.searchBtn();
 
-
     return (
-      <div>
-        <img style={{ display: "block", margin: "0 auto" }} src={logo} alt="search"></img>
+      <div className="home-wrapper">
+        <img className="home-logo hide" src={logo} alt="search"></img>
+        <img className="home-logo show" src={ghost} alt="search"></img>
         <Nav tabs>
           {buttonsData.map((item) => {
             return (
@@ -212,93 +221,96 @@ export default class Proxy extends Component {
             );
           })}
         </TabContent>
-        <UncontrolledButtonDropdown>
-          <DropdownToggle caret className="typeIp">
-            IP type - {this.state.typeIp}
-          </DropdownToggle>
-          <DropdownMenu>
-            {dropDownValueLeft.map((item) => {
-              return (
-                <DropdownItem
-                  key={item.id}
-                  value={item.value}
-                  onClick={() =>
-                    this.setState({
-                      typeIpValue: item.value,
-                      typeIp: item.name,
-                    })
-                  }
-                >
-                  {item.name}
-                </DropdownItem>
-              );
-            })}
-          </DropdownMenu>
-        </UncontrolledButtonDropdown>
-        <UncontrolledButtonDropdown>
-          <DropdownToggle caret className="typeIp">
-            Blacklists - Show {this.state.blacklist}
-          </DropdownToggle>
-          <DropdownMenu>
-            {dropDownValueRight.map((item) => {
-              return (
-                <DropdownItem
-                  key={item.id}
-                  value={item.value}
-                  onClick={() =>
-                    this.setState({
-                      blacklistValue: item.value,
-                      blacklist: item.name,
-                    })
-                  }
-                >
-                  {item.name}
-                </DropdownItem>
-              );
-            })}
-          </DropdownMenu>
-        </UncontrolledButtonDropdown>
-        <Button
-          onClick={() => {
-            this.propsTest();
-          }}
-        >
-          Test
-        </Button>
-        <hr />
+        <div className="select-block">
+          <UncontrolledButtonDropdown>
+            <DropdownToggle caret className="typeIp">
+              IP type - {this.state.typeIp}
+            </DropdownToggle>
+            <DropdownMenu>
+              {dropDownValueLeft.map((item) => {
+                return (
+                  <DropdownItem
+                    key={item.id}
+                    value={item.value}
+                    onClick={() =>
+                      this.setState({
+                        typeIpValue: item.value,
+                        typeIp: item.name,
+                      })
+                    }
+                  >
+                    {item.name}
+                  </DropdownItem>
+                );
+              })}
+            </DropdownMenu>
+          </UncontrolledButtonDropdown>
+          <UncontrolledButtonDropdown>
+            <DropdownToggle caret className="typeIp">
+              Blacklists - Show {this.state.blacklist}
+            </DropdownToggle>
+            <DropdownMenu>
+              {dropDownValueRight.map((item) => {
+                return (
+                  <DropdownItem
+                    key={item.id}
+                    value={item.value}
+                    onClick={() =>
+                      this.setState({
+                        blacklistValue: item.value,
+                        blacklist: item.name,
+                      })
+                    }
+                  >
+                    {item.name}
+                  </DropdownItem>
+                );
+              })}
+            </DropdownMenu>
+          </UncontrolledButtonDropdown>
+          <Button
+            onClick={() => {
+              this.propsTest();
+            }}
+          >
+            Test
+          </Button>
+        </div>
         <Form>
           <Row form>
-            <Col md={6}>
+            {/* <Col md={6} sm={3}>
               <Label for="exampleCity">City</Label>
             </Col>
-            <Col md={4}>
+            <Col md={6} sm={3}>
               <Label for="exampleZip">Zip</Label>
-            </Col>
-            <Col md={2}></Col>
-            <Col md={6}>
-              <FormGroup>
+            </Col> */}
+            <Col md={4} sm={4}>
+              <FormGroup className="city-wrapper">
                 <Input
                   key="city"
                   type="text"
                   name="city"
+                  placeholder="City"
                   id="City"
                   onChange={this.updateCity}
                 />
               </FormGroup>
             </Col>
-            <Col md={4}>
-              <FormGroup>
+            <Col md={4} sm={4}>
+              <FormGroup className="zip-wrapper">
                 <Input
                   key="zip"
                   type="text"
                   name="zip"
                   id="Zip"
+                  placeholder="Zip"
                   onChange={this.updateZIP}
                 />
               </FormGroup>
             </Col>
-            <Col md={2}>
+            <Col md={3} sm={4} className="btn-wrapper">
               <Button
+                className="btn-class"
                 onClick={() => {
                   this.searchBtn(false);
                 }}
@@ -318,6 +330,7 @@ export default class Proxy extends Component {
           <>
             <hr />
             <img
+              className="search-label"
               style={{ width: "170px", display: "block", margin: "0 auto" }}
               src={searchimg}
               alt="search"
