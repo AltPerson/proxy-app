@@ -185,8 +185,8 @@ export default class Proxy extends Component {
 
     return (
       <div className="home-wrapper">
-        <img className="home-logo hide" src={logo} alt="search"></img>
-        <img className="home-logo show" src={ghost} alt="search"></img>
+        <img className="home-logo hide" src={logo} alt="search" />
+        <img className="home-logo show" src={ghost} alt="search" />
         <Nav tabs>
           {buttonsData.map((item) => {
             return (
