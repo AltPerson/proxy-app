@@ -22,7 +22,7 @@ class Proxy {
   }
 
   resellProxy(ip) {
-    return this.getResource(`base/prolong?ip=${ip}`);
+    return this.getResource(`base/rent/${ip}`);
   }
 
   buyProxy(id) {
