@@ -267,13 +267,13 @@ export default class Proxy extends Component {
               })}
             </DropdownMenu>
           </UncontrolledButtonDropdown>
-          <Button
+          {/* <Button
             onClick={() => {
               this.propsTest();
             }}
           >
             Test
-          </Button>
+          </Button> */}
         </div>
         <Form>
           <Row form>

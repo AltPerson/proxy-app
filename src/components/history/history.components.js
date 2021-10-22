@@ -189,7 +189,7 @@ export default class History extends Component {
     return (
       <div className="historyWrapper">
         <img className="history-logo hide" src={logo} alt="search" />
-        <img className="history-logo show" src={ghost} alt="search" />
+        <img className="history-logo show_small-img" src={ghost} alt="search" />
         <Table className="historyItem" striped responsive>
           <thead>
             <tr>
