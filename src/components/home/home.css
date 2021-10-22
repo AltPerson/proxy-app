@@ -10,9 +10,9 @@
 .home-logo {
   margin: 0 auto;
 }
-.show {
+.show_small-img {
   display: none;
-}
+} 
 .nav-tabs {
   border-bottom: none;
   margin: 5px 0px;
@@ -49,7 +49,7 @@
 @media screen and (max-width: 768px) {
   .hide {
     display: none;
-  }
+  } 
   .show {
     display: block;
   }
