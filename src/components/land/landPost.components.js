@@ -21,6 +21,7 @@ export default class LandPost extends Component {
 
   componentDidMount() {
     this.proxyService.getLand(this.props.getLand).then((items) => {
+      
       if (Array.isArray(items)) {
         const arrayItems = items.map((item, index) => {
           return { country: item, post_code: item, id: index++ };

@@ -11,10 +11,12 @@
     "env": "^0.0.2",
     "react": "^16.14.0",
     "react-dom": "^16.14.0",
+    "react-redux": "^7.2.6",
     "react-router-dom": "^5.1.2",
     "react-scripts": "3.4.0",
     "react-validation": "^3.0.7",
     "reactstrap": "^8.9.0",
+    "redux": "^4.1.2",
     "validator": "^12.2.0"
   },
   "scripts": {

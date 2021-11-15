@@ -14,6 +14,7 @@ import Home from "./components/home/home.component";
 import History from "./components/history/history.components";
 import FAQ from "./components/faq/faq.component";
 import Donate from "./components/donate/donate.component";
+import HomeFunction from "./components/home/home.function";
 
 // import AuthVerify from "./common/auth-verify";
 import EventBus from "./common/EventBus";
@@ -102,6 +103,12 @@ class App extends Component {
                   <span className="nav-text">FAQ</span>
                 </Link>
               </li>
+              <li>
+                <Link to={"/test"} className="nav-text">
+                  <i className="fa fa-question-circle fa-2x"></i>
+                  <span className="nav-text">TEST Function</span>
+                </Link>
+              </li>
               <ul className="logout">
                 <li>
                   <a href="/login" className="nav-text" onClick={this.logOut}>
@@ -133,6 +140,7 @@ class App extends Component {
         <div className="container mt-3">
           <Switch>
             <Route exact path={["/", "/home"]} component={Home} />
+            <Route exact path="/test" component={HomeFunction} />
             <Route exact path="/login" component={Login} />
             <Route exact path="/history" component={History} />
             <Route exact path="/FAQ" component={FAQ} />
