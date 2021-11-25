@@ -12,7 +12,11 @@ class Proxy {
       },
     });
     if (!res.ok) {
-      throw new Error(`Could not fetch ${url}, received ${res.status}`);
+      if(res.status === 403){
+        localStorage.removeItem("user_info");
+        window.location.assign("/login");
+      }
+      //throw new Error(`Could not fetch ${url}, received ${res.status}`);
     }
     return await res.json();
   };

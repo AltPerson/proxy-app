@@ -90,11 +90,11 @@ export default class Proxy extends Component {
           };
         });
       })
-      .catch((error) => {
+      /*.catch((error) => {
         if (error) {
           window.location.assign("/login");
         }
-      });
+      });*/
   }
 
   propsTest() {

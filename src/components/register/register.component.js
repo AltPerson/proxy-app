@@ -235,7 +235,7 @@ export default class Register extends Component {
                 </div>
 
                 <div className="form-group">
-                  <button className="btn btn-primary btn-block">Sign Up</button>
+                  <button className="btn btn-primary btn-block mt-3">Sign Up</button>
                 </div>
                 <Link to={"/login"} className="nav-text">
                   <div className="form-group">
@@ -258,11 +258,6 @@ export default class Register extends Component {
                   {this.state.message}
                   
                 </div>
-                <Link to={"/login"} className="nav-text">
-                  <div className="form-group">
-                    <button className="btn btn-primary btn-block">Login</button>
-                  </div>
-                </Link>
               </div>
             )}
             <CheckButton
