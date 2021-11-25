@@ -51,8 +51,8 @@ export default class ShowProxy extends Component {
             zip: prox[i].zip,
             region: prox[i].region,
             typename: prox[i].typename,
-            price: prox[i].price,
-            rent_price: prox[i].rent_price,
+            price: prox[i].price.toFixed(2),
+            rent_price: prox[i].rent_price.toFixed(2),
           });
         }
         this.setState({
