@@ -171,6 +171,7 @@ export default class Proxy extends Component {
         proxyLand={proxyLand}
         City={City}
         Zip={Zip}
+        getDisable={this.getSpinner}
       />
     );
   }

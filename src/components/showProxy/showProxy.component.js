@@ -17,12 +17,15 @@ export default class ShowProxy extends Component {
       modalClass: "modal-closed",
       proxysList: false,
       sellProxy: null,
+      error: false,
+      disabled: false
     };
     this.modalOnRent = this.modalOnRent.bind(this);
     this.modalOnBuy = this.modalOnBuy.bind(this);
     this.modalClosed = this.modalClosed.bind(this);
 
     this.props.getSpinner(!this.state.proxysList);
+    this.props.getDisable(!this.state.disabled);
 
     /* this.buyBtn = this.buyBtn.bind(this); */
   }
@@ -36,7 +39,6 @@ export default class ShowProxy extends Component {
       .then((proxys) => {
         console.log(proxys);
         const prox = proxys.data;
-        console.log(prox);
         let proxyList = [];
         for (let i in prox) {
           proxyList.push({
@@ -61,7 +63,10 @@ export default class ShowProxy extends Component {
         if (res !== null) {
           this.props.getSpinner(!this.state.proxysList);
         }
-      });
+      })
+      .catch((error) =>{
+        this.setState({error: true, disabled: true})
+      })
   }
 
   shouldComponentUpdate(nextProps) {
@@ -76,8 +81,6 @@ export default class ShowProxy extends Component {
 
   UNSAFE_componentWillReceiveProps(nextProps, prevProps) {
     let btn = true;
-    console.log(nextProps);
-    console.log(btn);
     if (btn !== nextProps.clickBTN) {
       btn = !btn;
     }
@@ -200,13 +203,19 @@ export default class ShowProxy extends Component {
   }
 
   render() {
+    if(this.state.error === true){
+      return (
+        <div>Server error</div>
+      )
+    }
+
     if (!this.state.proxysList) {
       return <Spinner />;
     }
 
     const items = this.tableRender();
     return (
-      <div className="proxyWrapper">
+      <div className="proxyWrapper custom_container">
         <Table className="proxyItem" striped responsive>
           <thead>
             <tr>

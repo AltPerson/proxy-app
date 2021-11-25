@@ -16,6 +16,9 @@ class Proxy {
         localStorage.removeItem("user_info");
         window.location.assign("/login");
       }
+      if(res.status === 504){
+        console.log("Server hyunya, 504")
+      }
       //throw new Error(`Could not fetch ${url}, received ${res.status}`);
     }
     return await res.json();
