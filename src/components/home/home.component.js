@@ -327,6 +327,7 @@ export default class Proxy extends Component {
             </Col>
           </Row>
         </Form>
+        
         {this.state.showImg && !this.state.showSpiner ? (
           <>
             <hr />

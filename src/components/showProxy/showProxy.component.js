@@ -37,33 +37,38 @@ export default class ShowProxy extends Component {
     this.proxyService
       .getContinent(proxyLand, typeIp, blacklist, City, Zip, selectLand)
       .then((proxys) => {
-        console.log(proxys);
-        const prox = proxys.data;
-        let proxyList = [];
-        for (let i in prox) {
-          proxyList.push({
-            real_ip: prox[i].real_ip,
-            domain: prox[i].domain,
-            id: prox[i].id,
-            city: prox[i].city,
-            isp: prox[i].isp,
-            speed: prox[i].speed,
-            zip: prox[i].zip,
-            region: prox[i].region,
-            typename: prox[i].typename,
-            price: prox[i].price.toFixed(2),
-            rent_price: prox[i].rent_price.toFixed(2),
+        if(proxys.error === 0){
+          console.log(proxys);
+          const prox = proxys.data;
+          let proxyList = [];
+          for (let i in prox) {
+            proxyList.push({
+              real_ip: prox[i].real_ip,
+              domain: prox[i].domain,
+              id: prox[i].id,
+              city: prox[i].city,
+              isp: prox[i].isp,
+              speed: prox[i].speed,
+              zip: prox[i].zip,
+              region: prox[i].region,
+              typename: prox[i].typename,
+              price: prox[i].price.toFixed(2),
+              rent_price: prox[i].rent_price.toFixed(2),
+            });
+          }
+          this.setState({
+            proxysList: proxyList,
           });
         }
-        this.setState({
-          proxysList: proxyList,
-        });
+        if(proxys.error === 19) {
+          this.setState({
+            error: true
+          });
+        }
       })
       .then((res) => {
         if (res !== null) {
           this.props.getSpinner(!this.state.proxysList);
-
-          console.log(!this.state.proxysList);
         }
       })
       .catch((error) =>{
@@ -208,7 +213,11 @@ export default class ShowProxy extends Component {
 
   render() {
     if(this.state.error === true){
-      return <div>Server error</div>
+      return (
+        <div className="alert alert-warning" role="alert">
+          Server error, please try later or try again
+        </div>
+      )
     }
 
     if (!this.state.proxysList) {
