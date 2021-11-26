@@ -62,10 +62,13 @@ export default class ShowProxy extends Component {
       .then((res) => {
         if (res !== null) {
           this.props.getSpinner(!this.state.proxysList);
+
+          console.log(!this.state.proxysList);
         }
       })
       .catch((error) =>{
         this.setState({error: true, disabled: true})
+        this.props.getSpinner(false)
       })
   }
 
@@ -73,6 +76,7 @@ export default class ShowProxy extends Component {
     if (nextProps.clickBTN !== this.props.clickBTN) {
       this.setState({
         proxysList: null,
+        error: false
       });
       this.componentDidMount();
     }
@@ -204,9 +208,7 @@ export default class ShowProxy extends Component {
 
   render() {
     if(this.state.error === true){
-      return (
-        <div>Server error</div>
-      )
+      return <div>Server error</div>
     }
 
     if (!this.state.proxysList) {

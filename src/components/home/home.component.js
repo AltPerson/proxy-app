@@ -53,6 +53,7 @@ export default class Proxy extends Component {
       blacklistValue: 6,
       valueType: "Residential",
       typeIpValue: "all",
+      serverError: false
     };
     this.updateService();
     this.toggle = this.toggle.bind(this);
@@ -314,10 +315,10 @@ export default class Proxy extends Component {
                 onClick={() => {
                   this.searchBtn(false);
                 }}
-                disabled={this.state.disabledBtn}
+                disabled={this.state.disabledBtn || this.state.serverError ? true : false}
               >
                 Search Proxy
-                {this.state.disabledBtn ? (
+                {this.state.disabledBtn || this.state.serverError ? (
                   <span className="spinner-border spinner-border-sm"></span>
                 ) : (
                   " "
