@@ -195,9 +195,9 @@ export default class History extends Component {
             <tr>
               <th>Date</th>
               <th>City</th>
-              <th>Region</th>
               <th>Type</th>
               <th>Proxy</th>
+              <th>Region</th>
               <th>Price</th>
               <th>Extend</th>
               <th>Refaund</th>

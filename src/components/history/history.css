@@ -2,6 +2,10 @@
   margin: 0 auto 5px;
 }
 
+.historyWrapper{
+  margin: 0 30px;
+}
+
 @media screen and (max-width: 678px) {
   .historyWrapper {
     margin-left: 50px;
