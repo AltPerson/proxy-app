@@ -18,7 +18,8 @@ export default class ShowProxy extends Component {
       proxysList: false,
       sellProxy: null,
       error: false,
-      disabled: false
+      disabled: false,
+      not_found: false
     };
     this.modalOnRent = this.modalOnRent.bind(this);
     this.modalOnBuy = this.modalOnBuy.bind(this);
@@ -59,17 +60,16 @@ export default class ShowProxy extends Component {
           this.setState({
             proxysList: proxyList,
           });
-        }
-        if(proxys.error === 19) {
-          this.setState({
-            error: true
-          });
-        }
-      })
-      .then((res) => {
-        if (res !== null) {
           this.props.getSpinner(!this.state.proxysList);
         }
+        if(proxys.error === 19) {
+          this.setState({error: true, disabled: true})
+          this.props.getSpinner(false) 
+        } 
+        if(proxys.error === 5) {
+          this.setState({not_found: true, disabled: true})
+          this.props.getSpinner(false) 
+        } 
       })
       .catch((error) =>{
         this.setState({error: true, disabled: true})
@@ -81,7 +81,8 @@ export default class ShowProxy extends Component {
     if (nextProps.clickBTN !== this.props.clickBTN) {
       this.setState({
         proxysList: null,
-        error: false
+        error: false,
+        not_found: false
       });
       this.componentDidMount();
     }
@@ -214,8 +215,16 @@ export default class ShowProxy extends Component {
   render() {
     if(this.state.error === true){
       return (
-        <div className="alert alert-warning" role="alert">
+        <div className="alert alert-danger" role="alert">
           Server error, please try later or try again
+        </div>
+      )
+    }
+
+    if(this.state.not_found === true){
+      return (
+        <div className="alert alert-warning" role="alert">
+          Sorry but for your query not found socks at now, please search other proxys
         </div>
       )
     }

@@ -91,11 +91,6 @@ export default class Proxy extends Component {
           };
         });
       })
-      /*.catch((error) => {
-        if (error) {
-          window.location.assign("/login");
-        }
-      });*/
   }
 
   propsTest() {
@@ -139,9 +134,11 @@ export default class Proxy extends Component {
   getSpinner(data) {
     if (data === true) {
       this.setState({ disabledBtn: true });
+      console.log(this.state.disabledBtn)
     }
     if (data === false) {
       this.setState({ disabledBtn: false });
+      console.log(this.state.disabledBtn)
     }
   }
 
