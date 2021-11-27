@@ -127,6 +127,12 @@ class App extends Component {
                   <span className="nav-text">Sign Up</span>
                 </Link>
               </li>
+              <li>
+                <Link to={"/FAQ"} className="nav-text">
+                  <i className="fa fa-question-circle fa-2x"></i>
+                  <span className="nav-text">FAQ</span>
+                </Link>
+              </li>
             </div>
           )}
         </nav>
