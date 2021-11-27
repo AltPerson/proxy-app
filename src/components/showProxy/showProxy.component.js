@@ -62,14 +62,15 @@ export default class ShowProxy extends Component {
           });
           this.props.getSpinner(!this.state.proxysList);
         }
-        if(proxys.error === 19) {
-          this.setState({error: true, disabled: true})
-          this.props.getSpinner(false) 
-        } 
         if(proxys.error === 5) {
           this.setState({not_found: true, disabled: true})
           this.props.getSpinner(false) 
         } 
+        if(proxys.error > 0) {
+          this.setState({error: true, disabled: true})
+          this.props.getSpinner(false) 
+        } 
+        
       })
       .catch((error) =>{
         this.setState({error: true, disabled: true})
