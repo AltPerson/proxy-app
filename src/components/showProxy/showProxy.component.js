@@ -215,15 +215,15 @@ export default class ShowProxy extends Component {
   render() {
     if(this.state.error === true){
       return (
-        <div className="alert alert-danger" role="alert">
-          Server error, please try later or try again
+        <div className="alert alert-danger alert-custom" role="alert">
+          Please try later or try again
         </div>
       )
     }
 
     if(this.state.not_found === true){
       return (
-        <div className="alert alert-warning" role="alert">
+        <div className="alert alert-warning alert-custom" role="alert">
           Sorry but for your query not found socks at now, please search other proxys
         </div>
       )
