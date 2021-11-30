@@ -19,12 +19,12 @@ import yandex from "./img/yandex.png";
 
 import proxyService from "../../services/proxy.service";
 
-export default function Donate({modal, setModalQiwi}) {
+export default function Donate() {
 
   const [services] = useState(new proxyService())
 
-  const [checkQiwi] = useState(false);
-  const [checkCard] = useState(false);
+  const [checkQiwi, setCheckQiwi] = useState(null);
+  const [checkCard, setCheckCard] = useState(null);
 
   const [qiwiValue, setqiwiValue] = useState("");
   const [cardValue, setCardValue] = useState("");
@@ -76,6 +76,7 @@ export default function Donate({modal, setModalQiwi}) {
   }
 
   const payCard = () => {
+    setCheckCard(true)
     services.getCard(cardValue, isLabel.value)
       .then((response) => {
         window.open(response.url);
@@ -83,6 +84,7 @@ export default function Donate({modal, setModalQiwi}) {
   }
 
   const payQiwi = () => {
+    setCheckQiwi(true)
     services.getQiwi(qiwiValue, isLabel.value)
       .then((response) => {
         window.open(response.url);

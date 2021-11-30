@@ -19,7 +19,7 @@ const CheckModal = (props) => {
 
   const getVerifiCard = () => {
     if (cardVerify !== null){
-        services.getVerifiZver(cardVerify) 
+        services.getVerifiFree(cardVerify) 
         .then((response) => {
             if(response.status === 0){
                 setModalText("Congratulations on your payment confirmed!!!")
