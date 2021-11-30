@@ -67,7 +67,7 @@ export default class History extends Component {
           className="sellIpInput"
           defaultValue={this.state.refaundProxy}
         ></input>
-        <span className="label"> is refaund</span>
+        <span className="label"> is prolong</span>
       </div>
     );
   }
