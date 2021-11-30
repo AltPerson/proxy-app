@@ -5,6 +5,7 @@ import { Table, Button } from "reactstrap";
 import Spinner from "../spinner/spinner.component";
 
 import proxyService from "../../services/proxy.service";
+import axios from "axios";
 
 import logo from "../logo.png";
 import ghost from "../../ghost.ico";
@@ -37,7 +38,14 @@ export default class History extends Component {
   modalOnResell(ip) {
     console.log("on");
     this.setState({ modalClass: "modal-open" });
-    this.proxyService
+    axios.get(process.env.REACT_APP_API_URL + "users/me", {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("user")}`,
+      },
+    })
+    .then((response) => {
+      localStorage.setItem("user_info", JSON.stringify(response.data));
+      this.proxyService
       .resellProxy(ip)
       .then((ref) => {
         console.log(ref);
@@ -48,6 +56,7 @@ export default class History extends Component {
           window.location.assign("/login");
         }
       });
+    });
   }
 
   modalClosed() {
@@ -143,7 +152,7 @@ export default class History extends Component {
     this.proxyService
       .historyProxy()
       .then((history) => {
-        console.log(history);
+        console.log(history.reverse());
         let historyList = [];
         for (let i in history) {
           const date = history[i].date.substr(0, 19).split("T");

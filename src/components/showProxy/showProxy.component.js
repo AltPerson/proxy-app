@@ -3,10 +3,12 @@ import React, { Component } from "react";
 import { Table, Button } from "reactstrap";
 
 import proxyService from "../../services/proxy.service";
+import axios from "axios";
 
 import Spinner from "../spinner/spinner.component";
 
 import "../modal/modal.css";
+
 
 export default class ShowProxy extends Component {
   proxyService = new proxyService();
@@ -99,26 +101,44 @@ export default class ShowProxy extends Component {
 
   modalOnRent(ip) {
     this.setState({ modalClass: "modal-open" });
-    this.proxyService.resellProxy(ip).then((sell) => {
-      if (sell.MESSAGE === "insufficient funds") {
-        this.setState({ sellProxy: sell.MESSAGE });
-      } else {
-        this.setState({ sellProxy: sell.CART[0].value });
-      }
+    axios.get(process.env.REACT_APP_API_URL + "users/me", {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("user")}`,
+      },
+    })
+    .then((response) => {
+      localStorage.setItem("user_info", JSON.stringify(response.data));
+      this.proxyService.resellProxy(ip)
+      .then((sell) => {
+        if (sell.MESSAGE === "insufficient funds") {
+          this.setState({ sellProxy: sell.MESSAGE });
+        } else {
+          this.setState({ sellProxy: sell.CART[0].value });
+        }
+      });
+      console.log("on");
     });
-    console.log("on");
+    
   }
 
   modalOnBuy(id) {
     this.setState({ modalClass: "modal-open" });
-    this.proxyService.buyProxy(id).then((sell) => {
-      if (sell.MESSAGE === "insufficient funds") {
-        this.setState({ sellProxy: sell.MESSAGE });
-      } else {
-        this.setState({ sellProxy: sell.CART[0].value });
-      }
+    axios.get(process.env.REACT_APP_API_URL + "users/me", {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("user")}`,
+      },
+    })
+    .then((response) => {
+      localStorage.setItem("user_info", JSON.stringify(response.data));
+      this.proxyService.buyProxy(id).then((sell) => {
+        if (sell.MESSAGE === "insufficient funds") {
+          this.setState({ sellProxy: sell.MESSAGE });
+        } else {
+          this.setState({ sellProxy: sell.CART[0].value });
+        }
+      });
+      console.log("on");
     });
-    console.log("on");
   }
 
   modalClosed() {
