@@ -3,6 +3,8 @@ import { Container, Button } from "reactstrap";
 
 import { buttonsQIWI, buttonsCard } from "./data";
 import Label from "./label.component";
+import CheckQiwi from "./modal_qiwi.component";
+import CheckModal from "./modal_card.component";
 
 import "./donate.css";
 
@@ -17,9 +19,12 @@ import yandex from "./img/yandex.png";
 
 import proxyService from "../../services/proxy.service";
 
-export default function Donate() {
+export default function Donate({modal, setModalQiwi}) {
 
   const [services] = useState(new proxyService())
+
+  const [checkQiwi] = useState(false);
+  const [checkCard] = useState(false);
 
   const [qiwiValue, setqiwiValue] = useState("");
   const [cardValue, setCardValue] = useState("");
@@ -148,9 +153,7 @@ export default function Donate() {
             >
               Pay
             </Button>
-            <Button color="warning" className="donate-btn">
-              Check
-            </Button>
+            <CheckQiwi cardVerify={checkQiwi}/>
             <img src={qiwi} alt="qiwi" className="donate-img"></img>
             <img src={yandex} alt="yandex" className="donate-img"></img>
           </div>
@@ -197,9 +200,7 @@ export default function Donate() {
             >
               Pay
             </Button>
-            <Button color="warning" className="donate-btn">
-              Check
-            </Button>
+            <CheckModal cardVerify={checkCard}/>
             <img src={visa} alt="visa" className="donate-img"></img>
           </div>
 

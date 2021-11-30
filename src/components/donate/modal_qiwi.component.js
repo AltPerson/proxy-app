@@ -10,12 +10,12 @@ const CheckQiwi = (props) => {
     cardVerify,
   } = props;
 
-  const [modal, setModal] = useState(false);
+  const [modal, setModalQiwi] = useState(false);
   const [modalText, setModalText] = useState(null)
 
   const [services] = useState(new proxyService())
 
-  const toggle = () => setModal(!modal);
+  const toggle = () => setModalQiwi(!modal);
 
   const getVerifiCard = () => {
     if (cardVerify !== null){
@@ -27,7 +27,7 @@ const CheckQiwi = (props) => {
             else { 
                 setModalText("You didn't pay money!!!")
             }
-            setModal(!modal)
+            setModalQiwi(!modal)
             console.log(response.status)
         })
         .catch(error => {
@@ -38,7 +38,7 @@ const CheckQiwi = (props) => {
     }
     else{
         setModalText("Transactions not found")
-        setModal(!modal)
+        setModalQiwi(!modal)
     }
   }
 
