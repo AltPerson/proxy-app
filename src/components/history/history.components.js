@@ -199,7 +199,7 @@ export default class History extends Component {
               <th>Proxy</th>
               <th>Region</th>
               <th>Price</th>
-              <th>Extend</th>
+              <th>Prolong</th>
               <th>Refaund</th>
             </tr>
           </thead>
