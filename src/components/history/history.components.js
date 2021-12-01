@@ -5,7 +5,6 @@ import { Table, Button } from "reactstrap";
 import Spinner from "../spinner/spinner.component";
 
 import proxyService from "../../services/proxy.service";
-import axios from "axios";
 
 import logo from "../logo.png";
 import ghost from "../../ghost.ico";
@@ -38,13 +37,6 @@ export default class History extends Component {
   modalOnResell(ip) {
     console.log("on");
     this.setState({ modalClass: "modal-open" });
-    axios.get(process.env.REACT_APP_API_URL + "users/me", {
-      headers: {
-        Authorization: `Bearer ${localStorage.getItem("user")}`,
-      },
-    })
-    .then((response) => {
-      localStorage.setItem("user_info", JSON.stringify(response.data));
       this.proxyService
       .resellProxy(ip)
       .then((ref) => {
@@ -56,7 +48,6 @@ export default class History extends Component {
           window.location.assign("/login");
         }
       });
-    });
   }
 
   modalClosed() {
@@ -199,7 +190,7 @@ export default class History extends Component {
       <div className="historyWrapper">
         <img className="history-logo hide" src={logo} alt="search" />
         <img className="history-logo show_small-img" src={ghost} alt="search" />
-        <Table className="historyItem" striped responsive>
+        <Table dark className="historyItem" striped responsive>
           <thead>
             <tr>
               <th>Date</th>

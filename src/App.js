@@ -72,9 +72,12 @@ class App extends Component {
     })
     .then((response) => {
       localStorage.setItem("user_info", JSON.stringify(response.data));
-      console.log("balance refaund")
-      this.setState({disabled: false})
+      this.setState({disabled: false, currentUser: response.data})
     })
+  }
+
+  getCurrentUser(data) {
+    console.log(data)
   }
 
   render() {

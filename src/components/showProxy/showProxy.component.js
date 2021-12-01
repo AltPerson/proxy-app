@@ -3,7 +3,6 @@ import React, { Component } from "react";
 import { Table, Button } from "reactstrap";
 
 import proxyService from "../../services/proxy.service";
-import axios from "axios";
 
 import Spinner from "../spinner/spinner.component";
 
@@ -101,13 +100,6 @@ export default class ShowProxy extends Component {
 
   modalOnRent(ip) {
     this.setState({ modalClass: "modal-open" });
-    axios.get(process.env.REACT_APP_API_URL + "users/me", {
-      headers: {
-        Authorization: `Bearer ${localStorage.getItem("user")}`,
-      },
-    })
-    .then((response) => {
-      localStorage.setItem("user_info", JSON.stringify(response.data));
       this.proxyService.resellProxy(ip)
       .then((sell) => {
         if (sell.MESSAGE === "insufficient funds") {
@@ -116,20 +108,10 @@ export default class ShowProxy extends Component {
           this.setState({ sellProxy: sell.CART[0].value });
         }
       });
-      console.log("on");
-    });
-    
   }
 
   modalOnBuy(id) {
     this.setState({ modalClass: "modal-open" });
-    axios.get(process.env.REACT_APP_API_URL + "users/me", {
-      headers: {
-        Authorization: `Bearer ${localStorage.getItem("user")}`,
-      },
-    })
-    .then((response) => {
-      localStorage.setItem("user_info", JSON.stringify(response.data));
       this.proxyService.buyProxy(id).then((sell) => {
         if (sell.MESSAGE === "insufficient funds") {
           this.setState({ sellProxy: sell.MESSAGE });
@@ -137,8 +119,6 @@ export default class ShowProxy extends Component {
           this.setState({ sellProxy: sell.CART[0].value });
         }
       });
-      console.log("on");
-    });
   }
 
   modalClosed() {
