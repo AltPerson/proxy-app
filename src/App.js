@@ -31,7 +31,9 @@ class App extends Component {
       showModeratorBoard: false,
       showAdminBoard: false,
       currentUser: undefined,
+      disabled: false
     };
+    this.refaundBalance = this.refaundBalance.bind(this);
   }
 
   componentDidMount() {
@@ -62,6 +64,7 @@ class App extends Component {
   }
 
   refaundBalance() {
+    this.setState({disabled: true})
     axios.get(process.env.REACT_APP_API_URL + "users/me", {
       headers: {
         Authorization: `Bearer ${localStorage.getItem("user")}`,
@@ -70,7 +73,8 @@ class App extends Component {
     .then((response) => {
       localStorage.setItem("user_info", JSON.stringify(response.data));
       console.log("balance refaund")
-    });
+      this.setState({disabled: false})
+    })
   }
 
   render() {
@@ -118,7 +122,7 @@ class App extends Component {
                   <i className="fas fa fa-user fa-2x user_detal-img"></i>
                     <span className="nav-text user_info">{currentUser.nickname} </span>
                     <span className="nav-text user_info">{currentUser.balance} $</span>
-                    <Button style={{marginLeft: "55px"}} onClick={this.refaundBalance}> Update balance</Button>
+                    <Button disabled={this.state.disabled} style={{marginLeft: "55px"}} onClick={this.refaundBalance}>Update balance</Button>
               </li>
               <ul className="logout">
                 <li>
