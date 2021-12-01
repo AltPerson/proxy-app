@@ -89,12 +89,7 @@ class App extends Component {
                 <span className="nav-text site_name">Ghost Proxy </span>
                 </div>
               </li>
-              <li>
-                  <i className="fas fa fa-user fa-2x user_detal-img"></i>
-                    <span className="nav-text user_info">{currentUser.nickname} </span>
-                    <span className="nav-text user_info">{currentUser.balance} $</span>
-                    <Button style={{marginLeft: "55px"}} onClick={this.refaundBalance}> Update balance</Button>
-              </li>
+              
               <li>
                 <Link to={"/home"} className="nav-text">
                   <i className="fa fa-search fa-2x"></i>
@@ -118,6 +113,12 @@ class App extends Component {
                   <i className="fa fa-question-circle fa-2x"></i>
                   <span className="nav-text">FAQ</span>
                 </Link>
+              </li>
+              <li>
+                  <i className="fas fa fa-user fa-2x user_detal-img"></i>
+                    <span className="nav-text user_info">{currentUser.nickname} </span>
+                    <span className="nav-text user_info">{currentUser.balance} $</span>
+                    <Button style={{marginLeft: "55px"}} onClick={this.refaundBalance}> Update balance</Button>
               </li>
               <ul className="logout">
                 <li>
