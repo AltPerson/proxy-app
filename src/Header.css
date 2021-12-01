@@ -54,7 +54,7 @@ nav.main-menu.expanded {
 
 .main-menu {
   background: #212121;
-  border-right: 1px solid #e5e5e5;
+  /* border-right: 1px solid #e5e5e5; */
   position: fixed;
   top: 0;
   bottom: 0;
@@ -109,6 +109,13 @@ nav.main-menu.expanded {
   vertical-align: middle;
   width: 250px;
   font-family: "Titillium Web", sans-serif;
+}
+
+@media screen and (max-width: 426px) {
+  .main-menu{
+    background: #212121;
+    display: flex;
+  }
 }
 
 .logout {

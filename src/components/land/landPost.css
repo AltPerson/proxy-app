@@ -55,3 +55,11 @@
   object-fit: cover;
   margin: 0 0 6px 10px;
 }
+
+@media screen and (max-width: 426px) {
+  .list__item{
+    width: 95px;
+    padding: 10px;
+    height: 25px;
+  }
+}

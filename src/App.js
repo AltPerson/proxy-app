@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Switch, Route, Link } from "react-router-dom";
+import { Button } from "reactstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 import "./Header.css";
@@ -14,6 +15,8 @@ import Home from "./components/home/home.component";
 import History from "./components/history/history.components";
 import FAQ from "./components/faq/faq.component";
 import Donate from "./components/donate/donate.component";
+
+import axios from "axios";
 
 
 // import AuthVerify from "./common/auth-verify";
@@ -58,6 +61,18 @@ class App extends Component {
     });
   }
 
+  refaundBalance() {
+    axios.get(process.env.REACT_APP_API_URL + "users/me", {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("user")}`,
+      },
+    })
+    .then((response) => {
+      localStorage.setItem("user_info", JSON.stringify(response.data));
+      console.log("balance refaund")
+    });
+  }
+
   render() {
     const { currentUser } = this.state;
 
@@ -78,6 +93,7 @@ class App extends Component {
                   <i className="fas fa fa-user fa-2x user_detal-img"></i>
                     <span className="nav-text user_info">{currentUser.nickname} </span>
                     <span className="nav-text user_info">{currentUser.balance} $</span>
+                    <Button style={{marginLeft: "55px"}} onClick={this.refaundBalance}> Refaund balance</Button>
               </li>
               <li>
                 <Link to={"/home"} className="nav-text">
