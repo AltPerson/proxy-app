@@ -93,7 +93,7 @@ class App extends Component {
                   <i className="fas fa fa-user fa-2x user_detal-img"></i>
                     <span className="nav-text user_info">{currentUser.nickname} </span>
                     <span className="nav-text user_info">{currentUser.balance} $</span>
-                    <Button style={{marginLeft: "55px"}} onClick={this.refaundBalance}> Refaund balance</Button>
+                    <Button style={{marginLeft: "55px"}} onClick={this.refaundBalance}> Update balance</Button>
               </li>
               <li>
                 <Link to={"/home"} className="nav-text">
