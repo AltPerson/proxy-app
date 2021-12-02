@@ -171,11 +171,6 @@ export default class Login extends Component {
             />
           </Form>
         </div>
-        <div style={{display: "flex", justifyContent: "center"}}>
-          <a href="https://freekassa.ru" target="_blank" rel="noopener noreferrer">
-            <img src="https://cdn.freekassa.ru/banners/big-dark-1.png" alt="free" title="Прием платежей"></img>
-          </a>
-        </div>
       </div>
     );
   }

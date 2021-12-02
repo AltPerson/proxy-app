@@ -86,11 +86,20 @@ class App extends Component {
     return (
       <div>
         <div className="area"></div>
+        
         <nav className="main-menu">
+        <div className="nav_phone">
+            <img className="ico_phone" src={ghost} alt="ghost"></img>
+            <div className="header_burger">
+              <i class="fa fa-bars" aria-hidden="true"></i>
+            </div>
+          </div>
           <div className="navbar-nav mr-auto"></div>
+          
           {currentUser ? (
-            <div>
-              <li>
+            <div className="menu_element">
+              
+              <li className="logo_with_text">
                 <div className="logo">
                 <img className="ico" src={ghost} alt="ghost"></img>
                 <span className="nav-text site_name">Ghost Proxy </span>
@@ -125,16 +134,19 @@ class App extends Component {
                   <i className="fas fa fa-user fa-2x user_detal-img"></i>
                     <span className="nav-text user_info">{currentUser.nickname} </span>
                     <span className="nav-text user_info">{currentUser.balance} $</span>
-                    <Button disabled={this.state.disabled} style={{marginLeft: "55px"}} onClick={this.refaundBalance}>Update balance</Button>
+                    
               </li>
-              <ul className="logout">
-                <li>
-                  <a href="/login" className="nav-text" onClick={this.logOut}>
-                    <i className="fa fa-power-off fa-2x"></i>
-                    <span className="nav-text">LogOut</span>
-                  </a>
-                </li>
-              </ul>
+              <Button className="updateBtn updateBtn_phone" disabled={this.state.disabled}  onClick={this.refaundBalance}>Update balance</Button>
+              <div className="logout_wrapper">
+                <ul className="logout">
+                  <li>
+                    <a href="/login" className="nav-text" onClick={this.logOut}>
+                      <i className="fa fa-power-off fa-2x"></i>
+                      <span className="nav-text">LogOut</span>
+                    </a>
+                  </li>
+                </ul>
+              </div>
             </div>
           ) : (
             <div className="navbar-nav ml-auto">
@@ -159,9 +171,10 @@ class App extends Component {
               </li>
             </div>
           )}
+          
         </nav>
-
-        <div className="custom_container mt-3">
+        
+        <div className="custom">
           <Switch>
             <Route exact path={["/", "/home"]} component={Home} />
             <Route exact path="/login" component={Login} />
@@ -173,6 +186,7 @@ class App extends Component {
         </div>
 
         {/*<AuthVerify logOut={this.logOut}/> */}
+        
       </div>
     );
   }
