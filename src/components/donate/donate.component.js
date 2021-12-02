@@ -79,6 +79,8 @@ export default function Donate() {
     setCheckCard(true)
     services.getCard(cardValue, isLabel.value)
       .then((response) => {
+        console.log(response)
+        setCheckCard(response.order_id)
         window.open(response.url);
       })
   }
@@ -87,6 +89,7 @@ export default function Donate() {
     setCheckQiwi(true)
     services.getQiwi(qiwiValue, isLabel.value)
       .then((response) => {
+        setCheckQiwi(response.order_id)
         window.open(response.url);
       }) 
   }

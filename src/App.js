@@ -91,7 +91,7 @@ class App extends Component {
         <div className="nav_phone">
             <img className="ico_phone" src={ghost} alt="ghost"></img>
             <div className="header_burger">
-              <i class="fa fa-bars" aria-hidden="true"></i>
+              <i className="fa fa-bars" aria-hidden="true"></i>
             </div>
           </div>
           <div className="navbar-nav mr-auto"></div>
