@@ -15,6 +15,7 @@ import Home from "./components/home/home.component";
 import History from "./components/history/history.components";
 import FAQ from "./components/faq/faq.component";
 import Donate from "./components/donate/donate.component";
+import Analitics from "./components/analitics/analitics";
 
 import axios from "axios";
 
@@ -31,20 +32,27 @@ class App extends Component {
       showModeratorBoard: false,
       showAdminBoard: false,
       currentUser: undefined,
-      disabled: false
+      disabled: false,
+      role: null
     };
     this.refaundBalance = this.refaundBalance.bind(this);
   }
 
   componentDidMount() {
     const user = AuthService.getCurrentUser();
-
+    
     if (user) {
-      this.setState({
-        currentUser: user,
-      });
+      if(user.role === "admin"){
+        this.setState({
+          role: "admin",
+          currentUser: user,
+        })
+      } else {
+        this.setState({
+          currentUser: user,
+        });
+      }
     }
-
     EventBus.on("logout", () => {
       this.logOut();
     });
@@ -81,7 +89,7 @@ class App extends Component {
   }
 
   render() {
-    const { currentUser } = this.state;
+    const { currentUser, role } = this.state;
 
     return (
       <div>
@@ -139,10 +147,20 @@ class App extends Component {
               <Button className="updateBtn updateBtn_phone" disabled={this.state.disabled}  onClick={this.refaundBalance}>Update balance</Button>
               <li>
                 <a href="https://t.me/GhostProxy_support"  rel="noopener noreferrer" target="_blank">
-                  <i class="fa fa-telegram" aria-hidden="true"></i>
+                  <i className="fa fa-telegram" aria-hidden="true"></i>
                   <span className="nav-text user_info">Support</span>
                 </a>
               </li>
+              {role === "admin" ? (
+                <li>
+                  <Link to={"/Analitics"} className="nav-text">
+                    <i className="fa fa-area-chart" aria-hidden="true"></i>
+                    <span className="nav-text">Analitics</span>
+                  </Link>
+                </li>
+              ) : (
+                <div></div>
+              )}
               <div className="logout_wrapper">
                 <ul className="logout">
                   <li>
@@ -188,6 +206,7 @@ class App extends Component {
             <Route exact path="/FAQ" component={FAQ} />
             <Route exact path="/donate" component={Donate} />
             <Route exact path="/register" component={Register} />
+            <Route exact path="/analitics" component={Analitics} />
           </Switch>
         </div>
 

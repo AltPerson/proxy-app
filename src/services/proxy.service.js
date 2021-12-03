@@ -76,6 +76,10 @@ class Proxy {
       `base/search?continent=${continent}&socks_type_id=${socks_type_id}&blacklisted_search=${blacklisted_search}&real_ip=all&domain=all&city=${city}&zip_city=${zip_city}&region=${region}`
     );
   }
+
+  getAllUsers = (limit = 4000, skip = 0) => {
+    return this.getResource(`users/?limit=${limit}&skip=${skip}`)
+  }
 }
 
 export default Proxy;
