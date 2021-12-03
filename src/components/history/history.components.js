@@ -48,9 +48,7 @@ export default class History extends Component {
         }
       })
       .catch((error) => {
-        if (error) {
-          window.location.assign("/login");
-        }
+        this.setState({ refaundProxy: "please try again or later" });
       });
   }
 
