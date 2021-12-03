@@ -4,6 +4,7 @@
 
 .historyWrapper{
   margin: 0 30px;
+  padding-left: 30px;
 }
 
 @media screen and (max-width: 678px) {

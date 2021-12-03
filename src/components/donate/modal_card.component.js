@@ -28,7 +28,6 @@ const CheckModal = (props) => {
                 setModalText("You didn't pay money!!!")
             }
             setModal(!modal)
-            console.log(response.status)
         })
         .catch(error => {
           if(error){
@@ -42,7 +41,6 @@ const CheckModal = (props) => {
     }
   }
 
-  console.log(cardVerify)
   return (
     <div>
       <Button color="warning" className="donate-btn" onClick={getVerifiCard}>Check</Button>

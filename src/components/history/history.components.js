@@ -35,13 +35,17 @@ export default class History extends Component {
   //Modal to ressel
 
   modalOnResell(ip) {
-    console.log("on");
     this.setState({ modalClass: "modal-open" });
       this.proxyService
       .resellProxy(ip)
       .then((ref) => {
         console.log(ref);
-        this.setState({ refaundProxy: ip });
+        if(ref.error === 0){
+          this.setState({ refaundProxy: ip });
+        }
+        if(ref.error > 0){
+          this.setState({ refaundProxy: "please try again or later" });
+        }
       })
       .catch((error) => {
         if (error) {
@@ -143,7 +147,6 @@ export default class History extends Component {
     this.proxyService
       .historyProxy()
       .then((history) => {
-        console.log(history.reverse());
         let historyList = [];
         for (let i in history) {
           const date = history[i].date.substr(0, 19).split("T");
@@ -157,7 +160,6 @@ export default class History extends Component {
             price: history[i].ammount.toFixed(2),
           });
         }
-        console.log(historyList);
         this.setState({
           historyList: historyList,
         });
