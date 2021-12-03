@@ -137,6 +137,12 @@ class App extends Component {
                     
               </li>
               <Button className="updateBtn updateBtn_phone" disabled={this.state.disabled}  onClick={this.refaundBalance}>Update balance</Button>
+              <li>
+                <a href="https://t.me/GhostProxy_support"  rel="noopener noreferrer" target="_blank">
+                  <i class="fa fa-telegram" aria-hidden="true"></i>
+                  <span className="nav-text user_info">Support</span>
+                </a>
+              </li>
               <div className="logout_wrapper">
                 <ul className="logout">
                   <li>
