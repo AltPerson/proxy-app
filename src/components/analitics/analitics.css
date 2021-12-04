@@ -34,3 +34,18 @@
 .table-bordered th {
     border: 0px
 }
+
+.form{
+    margin: 0 auto;
+}
+
+.nav-link.active {
+    color: #fff;
+    background-color: #212121;
+    border: 0px;
+}
+
+.nav-link{
+    color: #fff;
+    border-radius: 0.25rem;
+}
